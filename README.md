@@ -23,6 +23,7 @@ git clone https://github.com/Nevoif/NevoifLazyvimConfig.git ~/.config/nvim
 For mssql.lua add these lines to your ~/.zshrc (or your shell config):
 
 export MSSQL_USER= 
+
 export MSSQL_PASSWORD= 
 
 reload your shell
