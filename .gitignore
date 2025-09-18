@@ -1,8 +1,22 @@
-tt.*
-.tests
-doc/tags
-debug
-.repro
-foo.*
+# Ignore secrets
+.env
+*.secrets
+*.local.lua
+
+# Logs and debug stuff
 *.log
-data
+*.bak
+*.swp
+*.swo
+
+# Lazy.nvim generated files
+data/
+lazy-lock.json
+
+# Temp/test files
+tt.*
+foo.*
+debug/
+.repro/
+doc/tags
+.tests/
