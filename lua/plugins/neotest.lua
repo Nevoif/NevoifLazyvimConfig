@@ -6,11 +6,15 @@ return {
       "nvim-lua/plenary.nvim",
       "antoinemadec/FixCursorHold.nvim",
       "nvim-treesitter/nvim-treesitter",
+      "Issafalcon/neotest-dotnet",
     },
     config = function()
       require("neotest").setup({
         adapters = {
-          -- configure dotnet adapter below
+          require("neotest-dotnet")({
+            dap = { justMyCode = false },
+            discovery_root = "solution",
+          }),
         },
       })
     end,

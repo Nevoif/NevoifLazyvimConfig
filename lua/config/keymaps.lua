@@ -1,23 +1,120 @@
-local opts = { noremap = true, silent = true }
+-- ==============================
+-- Keymaps.lua for LazyVim
+-- ==============================
 
-vim.api.nvim_set_keymap("n", "<leader>dy", "<cmd>lua require'dapui'.toggle()<CR>", opts)
+local map = vim.keymap.set
 
--- Basic debugging controls
-vim.api.nvim_set_keymap("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", opts) -- toggle breakpoint
-vim.api.nvim_set_keymap("n", "<leader>dc", "<cmd>lua require'dap'.continue()<CR>", opts) -- start/continue debugging
-vim.api.nvim_set_keymap("n", "<leader>do", "<cmd>lua require'dap'.step_over()<CR>", opts) -- step over
-vim.api.nvim_set_keymap("n", "<leader>di", "<cmd>lua require'dap'.step_into()<CR>", opts) -- step into
-vim.api.nvim_set_keymap("n", "<leader>du", "<cmd>lua require'dap'.step_out()<CR>", opts) -- step out
-vim.api.nvim_set_keymap("n", "<leader>dr", "<cmd>lua require'dap'.repl.toggle()<CR>", opts) -- toggle REPL
-vim.api.nvim_set_keymap("n", "<leader>dq", "<cmd>lua require'dap'.disconnect()<CR>", opts) -- stop debugging
+-- ==============================
+-- DAP (Debug Adapter Protocol)
+-- ==============================
+map("n", "<leader>dy", function()
+  require("dapui").toggle()
+end, { noremap = true, silent = true, desc = "DAP: Toggle UI" })
+map("n", "<leader>db", function()
+  require("dap").toggle_breakpoint()
+end, { noremap = true, silent = true, desc = "DAP: Toggle Breakpoint" })
+map("n", "<leader>dc", function()
+  require("dap").continue()
+end, { noremap = true, silent = true, desc = "DAP: Continue" })
+map("n", "<leader>do", function()
+  require("dap").step_over()
+end, { noremap = true, silent = true, desc = "DAP: Step Over" })
+map("n", "<leader>di", function()
+  require("dap").step_into()
+end, { noremap = true, silent = true, desc = "DAP: Step Into" })
+map("n", "<leader>du", function()
+  require("dap").step_out()
+end, { noremap = true, silent = true, desc = "DAP: Step Out" })
+map("n", "<leader>dr", function()
+  require("dap").repl.toggle()
+end, { noremap = true, silent = true, desc = "DAP: Toggle REPL" })
+map("n", "<leader>dq", function()
+  require("dap").disconnect()
+end, { noremap = true, silent = true, desc = "DAP: Stop Debugging" })
+map("n", "<leader>dp", function()
+  require("dap").pause()
+end, { noremap = true, silent = true, desc = "DAP: Pause Execution" })
+map("n", "<leader>dl", function()
+  require("dap").run_last()
+end, { noremap = true, silent = true, desc = "DAP: Run Last Session" })
+map("n", "<leader>dx", function()
+  require("dap").set_exception_breakpoints({ "all" })
+end, { noremap = true, silent = true, desc = "DAP: Exception Breakpoints" })
+map("n", "<leader>dh", function()
+  require("dap.ui.widgets").hover()
+end, { noremap = true, silent = true, desc = "DAP: Hover Variables" })
+map("n", "<leader>df", function()
+  require("dap.ui.widgets").centered_float()
+end, { noremap = true, silent = true, desc = "DAP: Floating Window" })
+map({ "n", "v" }, "<leader>de", function()
+  require("dapui").eval()
+end, { noremap = true, silent = true, desc = "DAP: Evaluate Expression" })
 
--- Advanced commands
-vim.api.nvim_set_keymap("n", "<leader>dp", "<cmd>lua require'dap'.pause()<CR>", opts) -- pause execution
-vim.api.nvim_set_keymap("n", "<leader>dl", "<cmd>lua require'dap'.run_last()<CR>", opts) -- run last debug session
-vim.api.nvim_set_keymap("n", "<leader>dx", "<cmd>lua require'dap'.set_exception_breakpoints({'all'})<CR>", opts) -- break on exceptions
-vim.api.nvim_set_keymap("n", "<leader>dh", "<cmd>lua require'dap.ui.widgets.hover()<CR>", opts) -- hover variables (requires dap-ui)
-vim.api.nvim_set_keymap("n", "<leader>df", "<cmd>lua require'dap.ui.widgets.centered_float()<CR>", opts) -- show variable in float window
+-- ==============================
+-- Telescope (Lazy-load safe)
+-- ==============================
+map("n", "<leader>ff", function()
+  require("telescope.builtin").find_files()
+end, { noremap = true, silent = true, desc = "Telescope: Find Files" })
+map("n", "<leader>fg", function()
+  require("telescope.builtin").live_grep()
+end, { noremap = true, silent = true, desc = "Telescope: Live Grep" })
+map("n", "<leader>fb", function()
+  require("telescope.builtin").buffers()
+end, { noremap = true, silent = true, desc = "Telescope: List Buffers" })
+map("n", "<leader>fh", function()
+  require("telescope.builtin").help_tags()
+end, { noremap = true, silent = true, desc = "Telescope: Help Tags" })
+map("n", "<leader>gs", function()
+  require("telescope.builtin").git_status()
+end, { noremap = true, silent = true, desc = "Telescope: Git Status" })
 
--- Evaluate expression under cursor in REPL
-vim.api.nvim_set_keymap("n", "<leader>de", "<cmd>lua require'dapui'.eval()<CR>", opts)
-vim.api.nvim_set_keymap("v", "<leader>de", "<cmd>lua require'dapui'.eval()<CR>", opts)
+-- ==============================
+-- Trouble (Diagnostics)
+-- ==============================
+map("n", "<leader>xx", "<cmd>TroubleToggle<CR>", { noremap = true, silent = true, desc = "Trouble: Toggle" })
+map(
+  "n",
+  "<leader>xw",
+  "<cmd>Trouble workspace_diagnostics<CR>",
+  { noremap = true, silent = true, desc = "Trouble: Workspace Diagnostics" }
+)
+map("n", "<leader>xl", "<cmd>Trouble loclist<CR>", { noremap = true, silent = true, desc = "Trouble: Location List" })
+map("n", "<leader>xq", "<cmd>Trouble quickfix<CR>", { noremap = true, silent = true, desc = "Trouble: Quickfix List" })
+
+-- ==============================
+-- Gitsigns
+-- ==============================
+map("n", "]h", function()
+  require("gitsigns").next_hunk()
+end, { noremap = true, silent = true, desc = "Git: Next Hunk" })
+map("n", "[h", function()
+  require("gitsigns").prev_hunk()
+end, { noremap = true, silent = true, desc = "Git: Prev Hunk" })
+map("n", "<leader>hs", function()
+  require("gitsigns").stage_hunk()
+end, { noremap = true, silent = true, desc = "Git: Stage Hunk" })
+map("n", "<leader>hu", function()
+  require("gitsigns").undo_stage_hunk()
+end, { noremap = true, silent = true, desc = "Git: Undo Stage Hunk" })
+map("n", "<leader>hp", function()
+  require("gitsigns").preview_hunk()
+end, { noremap = true, silent = true, desc = "Git: Preview Hunk" })
+
+-- ==============================
+-- Todo Comments
+-- ==============================
+map("n", "<leader>xt", "<cmd>TodoTrouble<CR>", { noremap = true, silent = true, desc = "TodoComments: List TODOs" })
+
+-- ==============================
+-- Bufferline
+-- ==============================
+map("n", "[b", "<cmd>BufferLineCyclePrev<CR>", { noremap = true, silent = true, desc = "Bufferline: Previous Buffer" })
+map("n", "]b", "<cmd>BufferLineCycleNext<CR>", { noremap = true, silent = true, desc = "Bufferline: Next Buffer" })
+
+-- ==============================
+-- Future: .NET Unit Testing (Neotest)
+-- ==============================
+-- map('n', '<leader>tn', function() require('neotest').run.run() end, { desc = 'Neotest: Run nearest test' })
+-- map('n', '<leader>ts', function() require('neotest').run.run({ strategy = 'dap' }) end, { desc = 'Neotest: Debug nearest test' })
+-- map('n', '<leader>tf', function() require('neotest').run.run(vim.fn.expand("%")) end, { desc = 'Neotest: Run tests in file' })
