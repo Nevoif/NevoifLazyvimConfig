@@ -2,7 +2,7 @@ local theme = {}
 
 -- Extracted main palette from your VSCode JSON
 theme.colors = {
-  bg = "#16171A",
+  bg = "#000006",
   fg = "#F8F8F2",
   accent = "#3877d1",
   red = "#E356A7",
