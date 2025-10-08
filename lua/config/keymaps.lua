@@ -118,3 +118,8 @@ map("n", "]b", "<cmd>BufferLineCycleNext<CR>", { noremap = true, silent = true, 
 -- map('n', '<leader>tn', function() require('neotest').run.run() end, { desc = 'Neotest: Run nearest test' })
 -- map('n', '<leader>ts', function() require('neotest').run.run({ strategy = 'dap' }) end, { desc = 'Neotest: Debug nearest test' })
 -- map('n', '<leader>tf', function() require('neotest').run.run(vim.fn.expand("%")) end, { desc = 'Neotest: Run tests in file' })
+
+-- currently didn't get into .NET Unit Testing yet so i will leave this for later
+
+-- ==============================
+
