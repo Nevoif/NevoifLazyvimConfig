@@ -2,7 +2,7 @@ local theme = {}
 
 -- Extracted main palette from your VSCode JSON
 theme.colors = {
-  bg = "#000006",
+  bg = "#090909",
   fg = "#F8F8F2",
   accent = "#3877d1",
   red = "#E356A7",
@@ -20,7 +20,7 @@ function theme.setup()
   local c = theme.colors
   vim.cmd("hi clear")
   vim.o.background = "dark"
-  vim.g.colors_name = "mytheme"
+  vim.g.colors_name = "orcatheme"
 
   -- Core UI
   vim.api.nvim_set_hl(0, "Normal", { fg = c.fg, bg = c.bg })
