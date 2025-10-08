@@ -41,6 +41,9 @@ source ~/.zshrc  (or your shell config)
 - Only configuration files are included; **plugins themselves are not committed**.
 - No passwords or secrets are stored in this repository.
 - Tested on Linux (Arch) + zsh, should also work on macOS.
+- Windows support is untested.
+- There is a Arch specific setting inside dotnet.lua plugin i guess? Feel free to modify it for your OS.
+- If you want to change the theme, too bad. Play with the settings as you wish but know that theme files are a bit messy.
 
 ---
 
