@@ -86,16 +86,16 @@ map("n", "<leader>xq", "<cmd>Trouble quickfix<CR>", { noremap = true, silent = t
 -- Gitsigns
 -- ==============================
 map("n", "]h", function()
-  require("gitsigns").next_hunk()
+  require("gitsigns.nav_hunk").next_hunk()
 end, { noremap = true, silent = true, desc = "Git: Next Hunk" })
 map("n", "[h", function()
-  require("gitsigns").prev_hunk()
+  require("gitsigns.nav_hunk").prev_hunk()
 end, { noremap = true, silent = true, desc = "Git: Prev Hunk" })
 map("n", "<leader>hs", function()
   require("gitsigns").stage_hunk()
 end, { noremap = true, silent = true, desc = "Git: Stage Hunk" })
 map("n", "<leader>hu", function()
-  require("gitsigns").undo_stage_hunk()
+  require("gitsigns.nav_hunk").undo_stage_hunk()
 end, { noremap = true, silent = true, desc = "Git: Undo Stage Hunk" })
 map("n", "<leader>hp", function()
   require("gitsigns").preview_hunk()
@@ -122,4 +122,3 @@ map("n", "]b", "<cmd>BufferLineCycleNext<CR>", { noremap = true, silent = true, 
 -- currently didn't get into .NET Unit Testing yet so i will leave this for later
 
 -- ==============================
-
