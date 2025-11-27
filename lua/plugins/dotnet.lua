@@ -6,14 +6,15 @@ return {
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       require("easy-dotnet").setup({
-        cmd = "dotnet-easydotnet",  -- fix for Arch Linux btw. (omg i spent 2 hours trying to figure this out)
+        cmd = "dotnet-easydotnet", -- fix for Arch Linux btw. (omg i spent 2 hours trying to figure this out)
+        lsp = { enable = false, }, -- incase this is causing the notification problem.
       })
     end,
   },
 }
 
 
---makes life easier tbh 
+--makes life easier tbh
 --especially for building and running .NET projects
 --also it has a lot of useful commands like:
 --:DotnetBuild
@@ -21,4 +22,4 @@ return {
 --:DotnetTest
 --:DotnetAddPackage
 --:DotnetRemovePackage
--- bla bla bla you get it 
+-- bla bla bla you get it
