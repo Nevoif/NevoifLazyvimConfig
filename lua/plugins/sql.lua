@@ -12,8 +12,16 @@ return {
       "DBUIFindBuffer",
     },
     init = function()
-      -- Your DBUI configuration
       vim.g.db_ui_use_nerd_fonts = 1
     end,
+    -- Added: The run button
+    keys = {
+      {
+        "<leader>r",
+        "<cmd>DB<cr>",
+        desc = "Run SQL Query",
+        ft = { "sql", "mysql", "plsql" },
+      },
+    },
   },
 }
