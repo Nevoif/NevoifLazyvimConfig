@@ -26,6 +26,9 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.lang.sql" },
     { import = "lazyvim.plugins.extras.lang.yaml" },
 
+    --honorable mentions
+    { import = "lazyvim.plugins.extras.test.core" },
+
     -- 2. Coding & AI
     { import = "lazyvim.plugins.extras.ai.copilot" },
     { import = "lazyvim.plugins.extras.ai.copilot-chat" },
