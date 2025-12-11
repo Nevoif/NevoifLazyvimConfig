@@ -54,6 +54,12 @@ git clone https://github.com/Nevoif/NevoifLazyvimConfig.git ~/.config/nvim
 
 <!-- end list -->
 
+  - **im also using yay btw in my experience installing these beforehand really helped**
+
+```bash
+yay -S roslyn-ls netcoredbg
+```
+
 ```bash
 export MSSQL_USER="your_sa_user"
 export MSSQL_PASSWORD="your_strong_password"
