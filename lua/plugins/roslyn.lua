@@ -6,6 +6,16 @@ return {
       "mason-org/mason.nvim",
       "neovim/nvim-lspconfig",
     },
+    -- added direct keymap for code actions (Fix All, Refactor, etc.)
+    keys = {
+      {
+        "<leader>cf",
+        function()
+          vim.lsp.buf.code_action({ context = { only = { "quickfix", "refactor", "source" } } })
+        end,
+        desc = "Roslyn Fix/Refactor"
+      },
+    },
     config = function()
       require("roslyn").setup({
         config = {
@@ -21,8 +31,6 @@ return {
             },
           },
         },
-        -- Filewatching: 'roslyn' (server handles it) or 'auto' (neovim handles it)
-        -- 'roslyn' is often more performant for large solutions
         filewatching = "roslyn",
       })
 
