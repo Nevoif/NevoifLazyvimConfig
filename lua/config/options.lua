@@ -2,7 +2,6 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 vim.lsp.inlay_hint.enable(false)
-
 -- yoo i forgot this file even exists
 -- i moved my csharp config to lua/plugins/dotnet.lua and lua/plugins/roslyn.lua
 -- so this file is useless now
@@ -15,7 +14,7 @@ vim.lsp.inlay_hint.enable(false)
 -- maybe i will add some options later
 -- who knows
 -- bye
--- i said bye     
+-- i said bye
 -- i am bored
 -- ok bye for real now
 -- i will stop writing comments now
