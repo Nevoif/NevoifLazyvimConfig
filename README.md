@@ -49,16 +49,15 @@ sudo pacman -S base-devel unzip wget ripgrep fd
 ```bash
 git clone https://github.com/Nevoif/NevoifLazyvimConfig.git ~/.config/nvim
 ```
+  - **im also using yay btw in my experience installing these beforehand really helped**
+  
+  ```bash
+yay -S roslyn-ls netcoredbg
+```
 
   - **env vars (sql):** add these to `~/.zshrc` or `~/.bashrc` to auto-connect.
 
 <!-- end list -->
-
-  - **im also using yay btw in my experience installing these beforehand really helped**
-
-```bash
-yay -S roslyn-ls netcoredbg
-```
 
 ```bash
 export MSSQL_USER="your_sa_user"
