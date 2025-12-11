@@ -2,7 +2,9 @@
 
 > my highly experimental dotnet development environment.
 
-ditch rider or vs. this is a full dotnet ide for linux (arch) and macos. handles solutions, roslyn lsp, debugging, testing, sql, and http requests.
+ditch rider or vs. this is a full dotnet ide for linux (only tested on arch) and macos. handles solutions, roslyn lsp, debugging, testing, sql, and http requests.
+
+currently no issues on my archlinux pcs if all dotnet versions are up to date, netcoredbg and roslyn is installed.
 
 ## ⚡ features
 
