@@ -1,29 +1,32 @@
--- ~/.config/nvim/lua/plugins/dap-csharp.lua
 return {
   {
     "mfussenegger/nvim-dap",
-    lazy = false, -- always load
-    config = function()
+    optional = true,
+    opts = function()
       local dap = require("dap")
+      if not dap.adapters["netcoredbg"] then
+        require("dap").adapters["netcoredbg"] = {
+          type = "executable",
+          command = vim.fn.exepath("netcoredbg"),
+          args = { "--interpreter=vscode" },
+        }
+      end
 
-      dap.adapters.coreclr = {
-        type = "executable",
-        command = "/usr/bin/netcoredbg", -- check with: which netcoredbg
-        args = { "--interpreter=vscode" },
-      }
-
-      dap.configurations.cs = {
-        {
-          type = "coreclr",
-          name = "launch - netcoredbg",
-          request = "launch",
-          program = function()
-            return vim.fn.input("Path to dll: ",
-              vim.fn.getcwd() .. "/bin/Debug/net9.0/",
-              "file")
-          end,
-        },
-      }
+      for _, lang in ipairs({ "cs", "fsharp", "vb" }) do
+        if not dap.configurations[lang] then
+          dap.configurations[lang] = {
+            {
+              type = "netcoredbg",
+              name = "Launch file",
+              request = "launch",
+              program = function()
+                return vim.fn.input("Path to dll: ", vim.fn.getcwd() .. "/bin/Debug/", "file")
+              end,
+              cwd = "${workspaceFolder}",
+            },
+          }
+        end
+      end
     end,
   },
 }
