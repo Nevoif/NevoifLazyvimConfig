@@ -1,54 +1,107 @@
-# 💤 Nevoif's LazyVim Config
+# 💤 Nevoif's Lazyvim Config
 
-This repository contains my personal Neovim configuration using [LazyVim](https://github.com/LazyVim/LazyVim).
+> my highly experimental dotnet development environment.
 
-It includes my custom setups for:
-- Treesitter
-- C# / .NET development
-- MSSQL integration (with environment variables)
-- Keymaps, themes, and formatting
+ditch rider or vs. this is a full dotnet ide for linux (arch) and macos. handles solutions, roslyn lsp, debugging, testing, sql, and http requests.
 
----
+## ⚡ features
 
-## Setup Instructions
+  - **core:** roslyn integration via `roslyn.nvim`. supports razor/blazor, inlay hints, fast file watching.
+  - **build/run:** `easy-dotnet` for managing sln, csproj, and nugets.
+  - **debug:** native debugging with `nvim-dap` + `netcoredbg`.
+  - **test:** visual unit testing with `neotest`.
+  - **format:** strict formatting with `csharpier`.
+  - **http:** run `.http` files natively with `kulala.nvim` (postman replacement).
+  - **sql:** native sql client via `vim-dadbod-ui`.
+  - **clean:** auto-hides `bin` and `obj` folders.
 
-1. **Clone the repository:**
+-----
+
+## 🛠️ requirements
+  
+  - **loving parents** (mine love me):
+  - **neovim 0.10+** (needed for roslyn).
+  - **dotnet sdk** (as long as 6 or above ig). 
+  - **csharpier** (must install globally):
+  
+<!-- end list -->
+
+```bash
+dotnet tool install -g csharpier
+```
+
+  - **dependencies** (arch linux):
+
+<!-- end list -->
+
+```bash
+sudo pacman -S base-devel unzip wget ripgrep fd
+```
+
+-----
+
+## 🚀 setup
+
+  - **clone repo:**
+
+<!-- end list -->
 
 ```bash
 git clone https://github.com/Nevoif/NevoifLazyvimConfig.git ~/.config/nvim
 ```
 
-2. **Set environment variables for MSSQL**
+  - **env vars (sql):** add these to `~/.zshrc` or `~/.bashrc` to auto-connect.
 
-For mssql.lua add these lines to your ~/.zshrc (or your shell config):
+<!-- end list -->
 
-export MSSQL_USER= 
-export MSSQL_PASSWORD= 
+```bash
+export MSSQL_USER="your_sa_user"
+export MSSQL_PASSWORD="your_strong_password"
+```
 
-reload your shell
+  - **reload shell:** `source ~/.zshrc`
+  - **first launch:** open nvim, let lazy install plugins.
+  - **install tools:** run this inside nvim to get binaries.
 
-source ~/.zshrc  (or your shell config)
+<!-- end list -->
 
-3. **Open Neovim:**
+```vim
+:MasonInstall roslyn netcoredbg
+```
 
-- LazyVim will automatically install all required plugins.
-- Your custom configuration will be applied automatically.
+-----
 
----
+## ⌨️ keymaps
 
-## Notes
+  - `<leader>B`: **build** solution (quickfix list).
+  - `<leader>dr`: **run** project.
+  - `<leader>ds`: manage **user secrets**.
+  - `<leader>cf`: **code fix** / refactor.
+  - `<leader>db`: toggle **breakpoint**.
+  - `<leader>dc`: **continue** / start debug (f5).
+  - `<leader>t`: **test** menu.
+  - `<leader>Rr`: **run http** request.
+  - `<leader>Rt`: toggle http response/headers.
 
-- Only configuration files are included; **plugins themselves are not committed**.
-- No passwords or secrets are stored in this repository.
-- Tested on Linux (Arch) + zsh, should also work on macOS.
-- Windows support is untested.
-- There is a Arch specific setting inside dotnet.lua plugin i guess? Feel free to modify it for your OS.
-- If you want to change the theme, too bad. Play with the settings as you wish but know that theme files are a bit messy.
+-----
 
----
+## ⚙️ notes
 
-## Recommended
+  - **arch linux fix:** `easy-dotnet` config has a (i guess) hardcoded command (`dotnet-easydotnet`) for arch. delete that line in `lua/plugins/easy-dotnet.lua` if you're on macos. if it doesn't cause a problem don't touch lol idk what im doing.
+  - **database:** run `:DBUIToggle`. uses the env vars set above.
+  - **formatting:** handled by `conform.nvim`. fails if you didn't install `csharpier` globally.
+  - **theme:** highly customized messy and drums* autoloads.
+  - **secrets:** no passwords in repo. use env vars.
+  - **plugins:** not committed. they install on first load.
 
-- [Neovim 0.9+](https://neovim.io/) installed
-- Git installed (LazyVim pulls plugins automatically)
-- Optional utilities for best plugin experience: `fd`, `ripgrep`, `bat`
+-----
+
+## 📂 structure
+
+  - `lua/config/`: core options, keys.
+  - `lua/plugins/roslyn.lua`: lsp.
+  - `lua/plugins/easy-dotnet.lua`: build/run.
+  - `lua/plugins/dap.lua`: debug.
+  - `lua/plugins/test.lua`: testing.
+  - `lua/plugins/sql.lua`: database.
+  - `lua/plugins/api.lua`: http client.
