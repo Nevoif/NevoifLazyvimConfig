@@ -6,8 +6,8 @@ return {
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       require("easy-dotnet").setup({
-        cmd = "dotnet-easydotnet", -- fix for Arch Linux btw. (omg i spent 2 hours trying to figure this out)
-        lsp = { enable = false, }, -- incase this is causing the notification problem.
+        cmd = "dotnet-easydotnet",  -- fix for Arch Linux btw. (omg i spent 2 hours trying to figure this out)
+        lsp = { enabled = false, }, -- incase this is causing the notification problem.
       })
     end,
   },
