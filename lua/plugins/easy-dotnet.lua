@@ -22,14 +22,3 @@ return {
     },
   },
 }
-
-
---makes life easier tbh
---especially for building and running .NET projects
---also it has a lot of useful commands like:
---:DotnetBuild
---:DotnetRun
---:DotnetTest
---:DotnetAddPackage
---:DotnetRemovePackage
--- bla bla bla you get it
