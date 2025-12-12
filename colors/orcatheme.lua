@@ -67,6 +67,11 @@ function theme.setup()
   vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", { undercurl = true, sp = "#FF0000" })
   vim.api.nvim_set_hl(0, "DiagnosticUnderlineWarn", { undercurl = true, sp = "#CCA700" })
 
+  vim.api.nvim_set_hl(0, "DiagnosticVirtualTextInfo", { fg = c.comment })
+  vim.api.nvim_set_hl(0, "DiagnosticVirtualTextHint", { fg = c.comment })
+  vim.api.nvim_set_hl(0, "DiagnosticVirtualTextWarn", { fg = c.yellow })
+  vim.api.nvim_set_hl(0, "DiagnosticVirtualTextError", { fg = c.red })
+
   -- Treesitter
   vim.api.nvim_set_hl(0, "@variable", { fg = c.fg })
   vim.api.nvim_set_hl(0, "@property", { fg = c.lightblue })
