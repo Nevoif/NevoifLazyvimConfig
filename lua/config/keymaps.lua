@@ -111,3 +111,11 @@ map("n", "<leader>xt", "<cmd>TodoTrouble<CR>", { noremap = true, silent = true, 
 -- ==============================
 map("n", "[b", "<cmd>BufferLineCyclePrev<CR>", { noremap = true, silent = true, desc = "Bufferline: Previous Buffer" })
 map("n", "]b", "<cmd>BufferLineCycleNext<CR>", { noremap = true, silent = true, desc = "Bufferline: Next Buffer" })
+
+
+-- ==============================
+-- ✨ ENRICHMENTS (New Stuff) ✨
+-- ==============================
+
+-- select all is added omg!!
+map("n", "<C-a>", "gg<S-v>G", { desc = "Select All" })
