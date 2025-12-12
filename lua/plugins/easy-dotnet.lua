@@ -17,7 +17,7 @@ return {
     end,
     keys = {
       { "<leader>B",  function() require("easy-dotnet").build_quickfix() end, desc = "Dotnet Build (Quickfix)" },
-      { "<leader>dr", function() require("easy-dotnet").run_project() end,    desc = "Dotnet Run" },
+      { "<leader>dr", function() require("easy-dotnet").run() end,            desc = "Dotnet Run" },
       { "<leader>ds", function() require("easy-dotnet").secrets() end,        desc = "Dotnet Secrets" },
     },
   },
