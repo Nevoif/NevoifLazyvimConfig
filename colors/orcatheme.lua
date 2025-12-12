@@ -3,7 +3,7 @@ local theme = {}
 theme.colors = {
   bg = "#090909",
   fg = "#F8F8F2",
-  accent = "#61ead9", -- Cyan accent
+  accent = "#61ead9", -- cyan accent
   red = "#E356A7",
   green = "#42E66C",
   yellow = "#EFA554",
@@ -11,8 +11,8 @@ theme.colors = {
   lightblue = "#89CCEC",
   magenta = "#EA517A",
   cyan = "#61ead9",
-  grey = "#4F5D76",
-  comment = "#5E6C84",
+  grey = "#4F5D76", -- slightly brighter blueish grey
+  comment = "#728096",
   highlight = "#1d4a88",
 }
 
