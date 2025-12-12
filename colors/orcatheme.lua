@@ -56,8 +56,9 @@ function theme.setup()
   vim.api.nvim_set_hl(0, "PmenuSbar", { bg = "#121317" })
   vim.api.nvim_set_hl(0, "PmenuThumb", { bg = c.blue })
 
-  vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#16171a", fg = c.fg })
-  vim.api.nvim_set_hl(0, "FloatBorder", { bg = "#16171a", fg = c.accent })
+  -- <leader>
+  vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#090909", fg = c.fg })
+  vim.api.nvim_set_hl(0, "floatBorder", { bg = "#090909", fg = c.accent })
 
   vim.api.nvim_set_hl(0, "DiagnosticError", { fg = "#FF0000" })
   vim.api.nvim_set_hl(0, "DiagnosticWarn", { fg = "#CCA700" })
