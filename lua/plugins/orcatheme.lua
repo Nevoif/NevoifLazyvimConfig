@@ -1,5 +1,5 @@
 return {
-  dir = "~/.config/nvim/lua/orcatheme",
+  dir = "~/.config/nvim/colors",
   name = "orcatheme",
   lazy = false,
   priority = 1000,
