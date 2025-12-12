@@ -94,7 +94,6 @@ export MSSQL_PASSWORD="your_strong_password"
 
 ## ⚙️ notes
 
-  - **arch linux fix:** `easy-dotnet` config has a (i guess) hardcoded command (`dotnet-easydotnet`) for arch. delete that line in `lua/plugins/easy-dotnet.lua` if you're on macos. if it doesn't cause a problem don't touch lol idk what im doing.
   - **database:** run `:DBUIToggle`. uses the env vars set above.
   - **formatting:** handled by `conform.nvim`. fails if you didn't install `csharpier` globally.
   - **theme:** highly customized messy and drums* autoloads.
