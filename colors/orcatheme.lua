@@ -27,7 +27,7 @@ function theme.setup()
   vim.api.nvim_set_hl(0, "Comment", { fg = c.comment, italic = true })
   vim.api.nvim_set_hl(0, "LineNr", { fg = c.grey })
   vim.api.nvim_set_hl(0, "CursorLineNr", { fg = c.accent, bold = true })
-  vim.api.nvim_set_hl(0, "Visual", { bg = c.accent })
+  vim.api.nvim_set_hl(0, "Visual", { bg = c.highlight })
   vim.api.nvim_set_hl(0, "Search", { bg = c.highlight, fg = c.fg })
 
   -- Syntax
@@ -52,9 +52,9 @@ function theme.setup()
 
   -- Extensions
   vim.api.nvim_set_hl(0, "Pmenu", { bg = "#121317", fg = "#b0b0b0" })
-  vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#1d4a88", fg = "#ffffff", bold = true })
+  vim.api.nvim_set_hl(0, "PmenuSel", { bg = c.lightblue, fg = "#ffffff", bold = true })
   vim.api.nvim_set_hl(0, "PmenuSbar", { bg = "#121317" })
-  vim.api.nvim_set_hl(0, "PmenuThumb", { bg = c.accent })
+  vim.api.nvim_set_hl(0, "PmenuThumb", { bg = c.blue })
 
   vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#16171a", fg = c.fg })
   vim.api.nvim_set_hl(0, "FloatBorder", { bg = "#16171a", fg = c.accent })
