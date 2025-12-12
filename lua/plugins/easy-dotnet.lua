@@ -5,7 +5,7 @@ return {
     dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
     config = function()
       require("easy-dotnet").setup({
-        cmd = "dotnet-easydotnet",
+        --        cmd = "dotnet-easydotnet",
         lsp = {
           enabled = false, -- Conflict prevention
         },
