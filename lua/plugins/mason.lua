@@ -3,12 +3,12 @@ return {
     "mason-org/mason.nvim",
     config = function()
       require("mason").setup {
-        -- Preserve your custom registries
+        -- custom registries
         registries = {
           "github:Crashdummyy/mason-registry",
           "github:mason-org/mason-registry",
         },
-        -- Force Mason to install these binaries automatically
+        -- Mason to install these binaries automatically
         ensure_installed = {
           -- Core .NET / C#
           "roslyn",
@@ -29,8 +29,8 @@ return {
           "dockerfile-language-server",
           "yaml-language-server",
           "bash-language-server",
-          "black",           -- Python formatter (required by your list)
-          "tree-sitter-cli", -- Utility (required by your list)
+          "black",           -- future plans!
+          "tree-sitter-cli", -- utility
           "sqlfluff",        -- SQL formatter (recommended for lang.sql extra)
 
           -- Config Maintenance / Utility
