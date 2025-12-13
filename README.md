@@ -79,16 +79,85 @@ export MSSQL_PASSWORD="your_strong_password"
 -----
 
 ## ⌨️ keymaps
+⌨️ keymaps
 
-  - `<leader>B`: **build** solution (quickfix list).
-  - `<leader>dr`: **run** project.
-  - `<leader>ds`: manage **user secrets**.
-  - `<leader>cf`: **code fix** / refactor.
-  - `<leader>db`: toggle **breakpoint**.
-  - `<leader>dc`: **continue** / start debug (f5).
-  - `<leader>t`: **test** menu.
-  - `<leader>Rr`: **run http** request.
-  - `<leader>Rt`: toggle http response/headers.
+build & run
+
+    <leader>dr: run project (select console/web).
+
+    <leader>B: build solution (errors in quickfix).
+
+    <leader>ds: manage user secrets.
+
+debug (dap)
+    
+    <leader>dy: toggle dapUI.
+
+    <leader>db: toggle breakpoint.
+
+    <leader>dc: start / continue debug (f5).
+
+    <leader>do: step over (f10).
+
+    <leader>di: step into (f11).
+
+    <leader>du: step out (f12).
+
+    <leader>dO: open debug console/repl.
+
+    <leader>dt: terminate session.
+
+testing
+
+    <leader>tn: run nearest test (fact/theory).
+
+    <leader>ts: debug nearest test.
+
+    <leader>tf: run all tests in file.
+
+    <leader>to: toggle output panel.
+
+    <leader>tS: stop running test.
+
+lsp & navigation
+
+    gd: go to definition.
+
+    gr: find references.
+
+    K: hover documentation.
+
+    <leader>ca: code action (quick fix).
+
+    <leader>rn: rename symbol.
+
+http client
+
+    <leader>Rr: run request.
+
+    <leader>Rt: toggle view (body/headers).
+
+    ]: next request.
+
+    [: prev request.
+
+database
+
+    :DBUIToggle: open database drawer.
+
+    <leader>S: execute selected query.
+
+workflow
+
+    <leader>D: clean delete (no clipboard overwrite).
+
+    <leader>P: clean paste (keep clipboard).
+
+    Ctrl + a: select all.
+
+    Alt + Arrow: resize window split.
+
+    [b / ]b: cycle buffers (tabs).
 
 -----
 
