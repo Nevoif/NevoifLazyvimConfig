@@ -129,7 +129,7 @@ lsp & navigation
 
     <leader>ca: code action (quick fix).
 
-    <leader>rn: rename symbol.
+    <leader>cr: rename highlighted element across the file.
 
 http client
 
@@ -143,19 +143,13 @@ http client
 
 database
 
-    :DBUIToggle: open database drawer.
+    <leader>D: open database drawer.
 
     <leader>S: execute selected query.
 
 workflow
 
-    <leader>D: clean delete (no clipboard overwrite).
-
-    <leader>P: clean paste (keep clipboard).
-
     Ctrl + a: select all.
-
-    Alt + Arrow: resize window split.
 
     [b / ]b: cycle buffers (tabs).
 
