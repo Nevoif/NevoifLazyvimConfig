@@ -72,6 +72,13 @@ function theme.setup()
   vim.api.nvim_set_hl(0, "DiagnosticVirtualTextWarn", { fg = c.yellow })
   vim.api.nvim_set_hl(0, "DiagnosticVirtualTextError", { fg = c.red })
 
+
+  -- Incline Floating Badges
+  -- Saved: Subtle grey background (matches your StatusLine)
+  vim.api.nvim_set_hl(0, "InclineNormal", { bg = "#303136", fg = c.fg })
+  -- Modified: Yellow background with dark text (High Contrast Warning)
+  vim.api.nvim_set_hl(0, "InclineModified", { bg = c.yellow, fg = "#121317", bold = true })
+
   -- treesitter
   vim.api.nvim_set_hl(0, "@variable", { fg = c.fg })
   vim.api.nvim_set_hl(0, "@property", { fg = c.lightblue })

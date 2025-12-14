@@ -52,4 +52,34 @@ return {
     },
   },
 
+  -- floating filename badges
+  {
+    "b0o/incline.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("incline").setup({
+        window = {
+          padding = 0,
+          margin = { horizontal = 0, vertical = 0 },
+        },
+        render = function(props)
+          local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
+          local ft_icon, ft_color = require("nvim-web-devicons").get_icon_color(filename)
+          local modified = vim.bo[props.buf].modified
+
+          -- Select the highlight group defined in orcatheme.lua
+          local hl_group = modified and "InclineModified" or "InclineNormal"
+
+          return {
+            { " " },
+            { ft_icon, guifg = ft_color }, -- Keep icon color natural
+            { " " },
+            { filename },
+            { " " },
+            group = hl_group, -- Apply the theme color here
+          }
+        end,
+      })
+    end,
+  },
 }
