@@ -72,7 +72,7 @@ function theme.setup()
   vim.api.nvim_set_hl(0, "DiagnosticVirtualTextWarn", { fg = c.yellow })
   vim.api.nvim_set_hl(0, "DiagnosticVirtualTextError", { fg = c.red })
 
-  -- Treesitter
+  -- treesitter
   vim.api.nvim_set_hl(0, "@variable", { fg = c.fg })
   vim.api.nvim_set_hl(0, "@property", { fg = c.lightblue })
   vim.api.nvim_set_hl(0, "@field", { fg = c.cyan })
@@ -87,12 +87,18 @@ function theme.setup()
   vim.api.nvim_set_hl(0, "@punctuation.delimiter", { fg = c.fg })
   vim.api.nvim_set_hl(0, "@punctuation.bracket", { fg = "#AE9AFF" })
 
-  -- Plugins
+  -- plugins
   vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = c.bg, fg = c.fg })
   vim.api.nvim_set_hl(0, "NeoTreeEndOfBuffer", { fg = c.bg, bg = c.bg })
   vim.api.nvim_set_hl(0, "NeoTreeDirectoryIcon", { fg = c.accent })
   vim.api.nvim_set_hl(0, "NeoTreeGitModified", { fg = c.accent })
   vim.api.nvim_set_hl(0, "NeoTreeGitUntracked", { fg = c.accent })
+
+  -- rainbow brackets!
+  vim.api.nvim_set_hl(0, "MyRainbow1", { fg = "#89CCEC" })
+  vim.api.nvim_set_hl(0, "MyRainbow2", { fg = "#6a96e9" })
+  vim.api.nvim_set_hl(0, "MyRainbow3", { fg = "#FD88EB" })
+  vim.api.nvim_set_hl(0, "MyRainbow4", { fg = "#b190f7" })
 
   vim.api.nvim_set_hl(0, "NvimTreeNormal", { bg = c.bg, fg = c.fg })
 

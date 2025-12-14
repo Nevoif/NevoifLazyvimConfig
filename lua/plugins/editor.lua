@@ -2,7 +2,21 @@ return {
   {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {
+      close_if_last_window = true,
+      default_component_configs = {
+        indent = {
+          indent_size = 2,
+          padding = 0, -- remove extra left padding to save space
+          with_markers = true,
+        },
+      },
+      window = {
+        width = 30, -- change this value (default is 40)
+      },
       filesystem = {
+        group_empty_dirs = true,                  -- flattens empty folders (e.g. Services/Auth becomes one line)
+        follow_current_file = { enabled = true }, -- auto-scroll tree to your active file
+        use_libuv_file_watcher = true,            -- auto-update tree when files change (git/builds)
         filtered_items = {
           visible = false,
           hide_dotfiles = false,
@@ -20,4 +34,4 @@ return {
   },
 }
 
--- This configures Neo-tree to hide massive bin and obj folders that clutter the file explorer, so I only see code.
+-- this configures neo-tree to hide massive bin and obj folders that clutter the file explorer, so I only see code.
