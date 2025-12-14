@@ -33,7 +33,7 @@ return {
         cursor = { enabled = true },
         search = { enabled = true },     -- show search results in scrollbar
         diagnostic = { enabled = true }, -- show errors in scrollbar
-        gitsigns = { enabled = true },   -- show git changes in scrollbar
+        gitsigns = { enabled = false },  -- show git changes in scrollbar
         marks = { enabled = false },
       },
     },
