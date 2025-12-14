@@ -8,31 +8,31 @@ currently no issues on my archlinux pcs if all dotnet versions are up to date, n
 
 ## ⚡ features
 
-  - **core:** roslyn integration via `roslyn.nvim`. supports razor/blazor, inlay hints, fast file watching.
-  - **build/run:** `easy-dotnet` for managing sln, csproj, and nugets.
-  - **debug:** native debugging with `nvim-dap` + `netcoredbg`.
-  - **test:** visual unit testing with `neotest`.
-  - **format:** strict formatting with `csharpier`.
-  - **http:** run `.http` files natively with `kulala.nvim` (postman replacement).
-  - **sql:** native sql client via `vim-dadbod-ui`.
-  - **clean:** auto-hides `bin` and `obj` folders.
+- **core:** roslyn integration via `roslyn.nvim`. supports razor/blazor, inlay hints, fast file watching.
+- **build/run:** `easy-dotnet` for managing sln, csproj, and nugets.
+- **debug:** native debugging with `nvim-dap` + `netcoredbg`.
+- **test:** visual unit testing with `neotest`.
+- **format:** strict formatting with `csharpier`.
+- **http:** run `.http` files natively with `kulala.nvim` (postman replacement).
+- **sql:** native sql client via `vim-dadbod-ui`.
+- **clean:** auto-hides `bin` and `obj` folders.
 
------
+---
 
 ## 🛠️ requirements
-  
-  - **loving parents** (mine love me):
-  - **neovim 0.10+** (needed for roslyn).
-  - **dotnet sdk** (as long as 6 or above ig). 
-  - **csharpier** (must install globally):
-  
+
+- **loving parents** (mine love me):
+- **neovim 0.10+** (needed for roslyn).
+- **dotnet sdk** (as long as 6 or above ig).
+- **csharpier** (must install globally):
+
 <!-- end list -->
 
 ```bash
 dotnet tool install -g csharpier
 ```
 
-  - **dependencies** (arch linux):
+- **dependencies** (arch linux):
 
 <!-- end list -->
 
@@ -40,24 +40,25 @@ dotnet tool install -g csharpier
 sudo pacman -S base-devel unzip wget ripgrep fd
 ```
 
------
+---
 
 ## 🚀 setup
 
-  - **clone repo:**
+- **clone repo:**
 
 <!-- end list -->
 
 ```bash
 git clone https://github.com/Nevoif/NevoifLazyvimConfig.git ~/.config/nvim
 ```
-  - **im also using yay btw in my experience installing these beforehand really helped**
-  
-  ```bash
+
+- **im also using yay btw in my experience installing these beforehand really helped**
+
+```bash
 yay -S roslyn-ls netcoredbg
 ```
 
-  - **env vars (sql):** add these to `~/.zshrc` or `~/.bashrc` to auto-connect.
+- **env vars (sql):** add these to `~/.zshrc` or `~/.bashrc` to auto-connect.
 
 <!-- end list -->
 
@@ -66,9 +67,9 @@ export MSSQL_USER="your_sa_user"
 export MSSQL_PASSWORD="your_strong_password"
 ```
 
-  - **reload shell:** `source ~/.zshrc`
-  - **first launch:** open nvim, let lazy install plugins.
-  - **install tools:** run this inside nvim to get binaries.
+- **reload shell:** `source ~/.zshrc`
+- **first launch:** open nvim, let lazy install plugins.
+- **install tools:** run this inside nvim to get binaries.
 
 <!-- end list -->
 
@@ -76,9 +77,10 @@ export MSSQL_PASSWORD="your_strong_password"
 :MasonInstall roslyn netcoredbg
 ```
 
------
+---
 
 ## ⌨️ keymaps
+
 ⌨️ keymaps
 
 build & run
@@ -90,7 +92,7 @@ build & run
     <leader>ds: manage user secrets.
 
 debug (dap)
-    
+
     <leader>dy: toggle dapUI.
 
     <leader>db: toggle breakpoint.
@@ -153,24 +155,24 @@ workflow
 
     [b / ]b: cycle buffers (tabs).
 
------
+---
 
 ## ⚙️ notes
 
-  - **database:** run `:DBUIToggle`. uses the env vars set above.
-  - **formatting:** handled by `conform.nvim`. fails if you didn't install `csharpier` globally.
-  - **theme:** highly customized messy and drums* autoloads.
-  - **secrets:** no passwords in repo. use env vars.
-  - **plugins:** not committed. they install on first load.
+- **database:** run `:DBUIToggle`. uses the env vars set above.
+- **formatting:** handled by `conform.nvim`. fails if you didn't install `csharpier` globally.
+- **theme:** highly customized messy and drums\* autoloads.
+- **secrets:** no passwords in repo. use env vars.
+- **plugins:** not committed. they install on first load.
 
------
+---
 
 ## 📂 structure
 
-  - `lua/config/`: core options, keys.
-  - `lua/plugins/roslyn.lua`: lsp.
-  - `lua/plugins/easy-dotnet.lua`: build/run.
-  - `lua/plugins/dap.lua`: debug.
-  - `lua/plugins/test.lua`: testing.
-  - `lua/plugins/sql.lua`: database.
-  - `lua/plugins/api.lua`: http client.
+- `lua/config/`: core options, keys.
+- `lua/plugins/roslyn.lua`: lsp.
+- `lua/plugins/easy-dotnet.lua`: build/run.
+- `lua/plugins/dap.lua`: debug.
+- `lua/plugins/test.lua`: testing.
+- `lua/plugins/sql.lua`: database.
+- `lua/plugins/api.lua`: http client.

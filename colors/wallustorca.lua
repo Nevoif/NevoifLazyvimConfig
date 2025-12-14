@@ -24,22 +24,22 @@ local function get(name, fallback)
 end
 
 theme.colors = {
-  bg       = get("background", "#090909"),
-  fg       = get("foreground", "#F8F8F2"),
-  accent   = get("color12", "#3877d1"),
-  red      = get("color9", "#E356A7"),
-  green    = get("color10", "#42E66C"),
-  yellow   = get("color11", "#EFA554"),
-  blue     = get("color12", "#9B6BDF"),
-  magenta  = get("color13", "#EA517A"),
-  cyan     = get("color14", "#61ead9"),
-  grey     = get("color7", "#4F5D76"),
-  comment  = get("color8", "#5E6C84"),
-  highlight= get("color4", "#1d4a88"),
+  bg        = get("background", "#090909"),
+  fg        = get("foreground", "#F8F8F2"),
+  accent    = get("color12", "#3877d1"),
+  red       = get("color9", "#E356A7"),
+  green     = get("color10", "#42E66C"),
+  yellow    = get("color11", "#EFA554"),
+  blue      = get("color12", "#9B6BDF"),
+  magenta   = get("color13", "#EA517A"),
+  cyan      = get("color14", "#61ead9"),
+  grey      = get("color7", "#4F5D76"),
+  comment   = get("color8", "#5E6C84"),
+  highlight = get("color4", "#1d4a88"),
 
-  -- fixed statusline
-  status_fg = "#F8F8F2",
-  status_bg = "#303136",
+  -- extra derived colors
+  dark_bg   = get("color0", "#121317"), -- usually darker than bg
+  light_bg  = get("color8", "#303136"), -- slightly lighter
 }
 
 function theme.setup()
@@ -55,26 +55,75 @@ function theme.setup()
   vim.api.nvim_set_hl(0, "CursorLineNr", { fg = c.accent, bold = true })
   vim.api.nvim_set_hl(0, "Visual", { bg = c.highlight })
   vim.api.nvim_set_hl(0, "Search", { bg = c.highlight, fg = c.fg })
+  vim.api.nvim_set_hl(0, "WinSeparator", { fg = c.grey, bg = c.bg })
 
   -- Syntax
-  vim.api.nvim_set_hl(0, "String",   { fg = c.green })
+  vim.api.nvim_set_hl(0, "String", { fg = c.green })
   vim.api.nvim_set_hl(0, "Function", { fg = c.cyan })
-  vim.api.nvim_set_hl(0, "Keyword",  { fg = c.blue })
-  vim.api.nvim_set_hl(0, "Type",     { fg = c.yellow })
-  vim.api.nvim_set_hl(0, "Number",   { fg = c.magenta })
-  vim.api.nvim_set_hl(0, "Boolean",  { fg = c.blue })
-  vim.api.nvim_set_hl(0, "Error",    { fg = c.red, bold = true })
+  vim.api.nvim_set_hl(0, "Keyword", { fg = c.blue })
+  vim.api.nvim_set_hl(0, "Type", { fg = c.yellow })
+  vim.api.nvim_set_hl(0, "Number", { fg = c.magenta })
+  vim.api.nvim_set_hl(0, "Boolean", { fg = c.blue })
+  vim.api.nvim_set_hl(0, "Error", { fg = c.red, bold = true })
+  vim.api.nvim_set_hl(0, "Operator", { fg = c.fg })
 
   -- Git diffs
-  vim.api.nvim_set_hl(0, "DiffAdd",    { bg = c.green, fg = c.bg })
+  vim.api.nvim_set_hl(0, "DiffAdd", { bg = c.green, fg = c.bg })
   vim.api.nvim_set_hl(0, "DiffDelete", { bg = c.red, fg = c.bg })
   vim.api.nvim_set_hl(0, "DiffChange", { bg = c.blue, fg = c.bg })
 
-  -- Statusline (unchanged)
-  vim.api.nvim_set_hl(0, "StatusLine",       { fg = c.status_fg, bg = c.status_bg })
-  vim.api.nvim_set_hl(0, "StatusLineNC",     { fg = "#b0b0b0",   bg = c.status_bg })
-  vim.api.nvim_set_hl(0, "StatusLineTerm",   { fg = c.status_fg, bg = c.status_bg })
-  vim.api.nvim_set_hl(0, "StatusLineTermNC", { fg = "#b0b0b0",   bg = c.status_bg })
+  -- Statusline
+  vim.api.nvim_set_hl(0, "StatusLine", { fg = c.fg, bg = c.light_bg })
+  vim.api.nvim_set_hl(0, "StatusLineNC", { fg = c.comment, bg = c.light_bg })
+  vim.api.nvim_set_hl(0, "StatusLineTerm", { fg = c.fg, bg = c.light_bg })
+  vim.api.nvim_set_hl(0, "StatusLineTermNC", { fg = c.comment, bg = c.light_bg })
+
+  -- Pmenu (Completion)
+  vim.api.nvim_set_hl(0, "Pmenu", { bg = c.dark_bg, fg = c.comment })
+  vim.api.nvim_set_hl(0, "PmenuSel", { bg = c.highlight, fg = c.fg, bold = true })
+  vim.api.nvim_set_hl(0, "PmenuSbar", { bg = c.dark_bg })
+  vim.api.nvim_set_hl(0, "PmenuThumb", { bg = c.accent })
+
+  -- Floating Windows
+  vim.api.nvim_set_hl(0, "NormalFloat", { bg = c.bg, fg = c.fg })
+  vim.api.nvim_set_hl(0, "FloatBorder", { bg = c.bg, fg = c.accent })
+
+  -- Diagnostics
+  vim.api.nvim_set_hl(0, "DiagnosticError", { fg = c.red })
+  vim.api.nvim_set_hl(0, "DiagnosticWarn", { fg = c.yellow })
+  vim.api.nvim_set_hl(0, "DiagnosticInfo", { fg = c.accent })
+  vim.api.nvim_set_hl(0, "DiagnosticHint", { fg = c.cyan })
+  vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", { undercurl = true, sp = c.red })
+  vim.api.nvim_set_hl(0, "DiagnosticUnderlineWarn", { undercurl = true, sp = c.yellow })
+
+  -- Treesitter
+  vim.api.nvim_set_hl(0, "@variable", { fg = c.fg })
+  vim.api.nvim_set_hl(0, "@property", { fg = c.cyan })
+  vim.api.nvim_set_hl(0, "@field", { fg = c.cyan })
+  vim.api.nvim_set_hl(0, "@parameter", { fg = c.magenta })
+  vim.api.nvim_set_hl(0, "@variable.builtin", { fg = c.blue })
+  vim.api.nvim_set_hl(0, "@constructor", { fg = c.yellow })
+  vim.api.nvim_set_hl(0, "@operator", { fg = c.fg })
+  vim.api.nvim_set_hl(0, "@keyword", { fg = c.blue })
+  vim.api.nvim_set_hl(0, "@function.builtin", { fg = c.cyan })
+  vim.api.nvim_set_hl(0, "@type.builtin", { fg = c.yellow })
+  vim.api.nvim_set_hl(0, "@punctuation.delimiter", { fg = c.grey })
+  vim.api.nvim_set_hl(0, "@punctuation.bracket", { fg = c.grey })
+
+  -- Plugins: NeoTree
+  vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = c.bg, fg = c.fg })
+  vim.api.nvim_set_hl(0, "NeoTreeEndOfBuffer", { fg = c.bg, bg = c.bg })
+  vim.api.nvim_set_hl(0, "NeoTreeGitModified", { fg = c.yellow })
+  vim.api.nvim_set_hl(0, "NeoTreeGitUntracked", { fg = c.green })
+
+  -- Plugins: Telescope
+  local t_bg = c.bg
+  vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = t_bg, fg = c.fg })
+  vim.api.nvim_set_hl(0, "TelescopeBorder", { bg = t_bg, fg = c.accent })
+  vim.api.nvim_set_hl(0, "TelescopePromptNormal", { bg = t_bg, fg = c.fg })
+  vim.api.nvim_set_hl(0, "TelescopePromptBorder", { bg = t_bg, fg = c.accent })
+  vim.api.nvim_set_hl(0, "TelescopePromptTitle", { bg = c.accent, fg = c.bg })
+  vim.api.nvim_set_hl(0, "TelescopeSelection", { bg = c.light_bg, fg = c.accent, bold = true })
 end
 
 theme.setup()
