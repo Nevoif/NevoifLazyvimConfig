@@ -6,7 +6,7 @@
   - [features](#features)
   - [requirements](#requirements)
   - [setup](#setup)
-  - [⌨️ keymaps](#️-keymaps)
+  - [keymaps](#keymaps)
   - [notes](#notes)
   - [structure](#structure)
 
@@ -114,7 +114,7 @@ export MSSQL_PASSWORD="your_strong_password"
 
 ---
 
-## ⌨️ keymaps
+## keymaps
 
 **build & run**
 
