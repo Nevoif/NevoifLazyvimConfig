@@ -3,13 +3,14 @@
 <!--toc:start-->
 
 - [💤 Nevoif's Lazyvim Config](#💤-nevoifs-lazyvim-config)
-  - [⚡ features](#features)
-  - [🛠️ requirements](#🛠️-requirements)
-  - [🚀 setup](#🚀-setup)
+  - [features](#features)
+  - [requirements](#requirements)
+  - [setup](#setup)
   - [⌨️ keymaps](#️-keymaps)
-  - [⚙️ notes](#️-notes)
-  - [📂 structure](#📂-structure)
-  <!--toc:end-->
+  - [notes](#notes)
+  - [structure](#structure)
+
+<!--toc:end-->
 
 my highly experimental dotnet development environment.
 
@@ -20,7 +21,7 @@ handles solutions, roslyn lsp, debugging, testing, sql, and http requests.
 currently no issues on my archlinux pcs if all dotnet versions are
 up to date, netcoredbg and roslyn is installed.
 
-## ⚡ features
+## features
 
 - **core:** roslyn integration via `roslyn.nvim`.
 
@@ -51,7 +52,7 @@ up to date, netcoredbg and roslyn is installed.
 
 ---
 
-## 🛠️ requirements
+## requirements
 
 - **loving parents** (mine love me):
 - **neovim 0.10+** (needed for roslyn).
@@ -74,7 +75,7 @@ sudo pacman -S base-devel unzip wget ripgrep fd
 
 ---
 
-## 🚀 setup
+## setup
 
 - **clone repo:**
 
@@ -178,7 +179,7 @@ export MSSQL_PASSWORD="your_strong_password"
 
 ---
 
-## ⚙️ notes
+## notes
 
 - **database:** run `:DBUIToggle`/`<leader>D`. uses the env vars set above.
 - **formatting:** handled by `conform.nvim`. fails if you didn't install `csharpier` globally.
@@ -189,7 +190,7 @@ export MSSQL_PASSWORD="your_strong_password"
 
 ---
 
-## 📂 structure
+## structure
 
 - `lua/config/`: core options, keys.
 - `lua/plugins/roslyn.lua`: lsp.
