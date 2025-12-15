@@ -36,6 +36,7 @@ return {
           -- Config Maintenance / Utility
           "marksman",
           "lua-language-server",
+          "markdownlint-cli2"
         },
       }
     end,
