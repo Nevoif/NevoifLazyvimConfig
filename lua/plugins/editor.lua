@@ -6,15 +6,16 @@ return {
       default_component_configs = {
         indent = {
           indent_size = 2,
-          padding = 0, -- remove extra left padding to save space
+          padding = 0,
           with_markers = true,
         },
       },
       window = {
-        width = 30, -- change this value (default is 40)
+        width = 30,
       },
       filesystem = {
         group_empty_dirs = true,                  -- flattens empty folders (e.g. Services/Auth becomes one line)
+        bind_to_cwd = false,
         follow_current_file = { enabled = true }, -- auto-scroll tree to your active file
         use_libuv_file_watcher = true,            -- auto-update tree when files change (git/builds)
         filtered_items = {
