@@ -44,8 +44,14 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
     { import = "lazyvim.plugins.extras.vscode" },
 
-    -- 4. Import/override with your custom plugins (e.g., roslyn.lua, mason.lua)
+    -- 4. Web Tooling (Formatter/Linter)
+    { import = "lazyvim.plugins.extras.formatting.prettier" },
+    { import = "lazyvim.plugins.extras.linting.eslint" },
+
+    -- 5. Import/override with your custom plugins (e.g., roslyn.lua, mason.lua)
     { import = "plugins" },
+
+
   },
   defaults = {
     -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
