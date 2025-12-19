@@ -14,12 +14,16 @@ return {
     init = function()
       vim.g.db_ui_use_nerd_fonts = 1
     end,
-    -- Added: The run button
     keys = {
+      {
+        "<leader>sd",
+        "<cmd>DBUIToggle<cr>",
+        desc = "SQL: Toggle DB UI",
+      },
       {
         "<leader>r",
         "<cmd>DB<cr>",
-        desc = "Run SQL Query",
+        desc = "SQL: Run Query",
         ft = { "sql", "mysql", "plsql" },
       },
     },

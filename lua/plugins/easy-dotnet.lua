@@ -5,9 +5,8 @@ return {
     dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
     config = function()
       require("easy-dotnet").setup({
-        --        cmd = "dotnet-easydotnet",
         lsp = {
-          enabled = false, -- Conflict prevention
+          enabled = false, -- Avoid conflicts with Roslyn LSP
         },
         test_runner = {
           viewmode = "float",
@@ -16,9 +15,27 @@ return {
       })
     end,
     keys = {
-      { "<leader>B",  function() require("easy-dotnet").build_quickfix() end, desc = "Dotnet Build (Quickfix)" },
-      { "<leader>dr", function() require("easy-dotnet").run() end,            desc = "Dotnet Run" },
-      { "<leader>ds", function() require("easy-dotnet").secrets() end,        desc = "Dotnet Secrets" },
+      {
+        "<leader>B",
+        function()
+          require("easy-dotnet").build_quickfix()
+        end,
+        desc = "Dotnet: Build Project",
+      },
+      {
+        "<leader>dr",
+        function()
+          require("easy-dotnet").run()
+        end,
+        desc = "Dotnet: Run Project",
+      },
+      {
+        "<leader>ds",
+        function()
+          require("easy-dotnet").secrets()
+        end,
+        desc = "Dotnet: User Secrets",
+      },
     },
   },
 }

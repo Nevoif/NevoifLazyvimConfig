@@ -4,33 +4,49 @@ return {
     dependencies = { "Issafalcon/neotest-dotnet" },
     opts = function(_, opts)
       opts.adapters = opts.adapters or {}
-      table.insert(opts.adapters, require("neotest-dotnet")({
-        dap = { args = { justMyCode = false } },
-        discovery_root = "project",
-      }))
+      table.insert(
+        opts.adapters,
+        require("neotest-dotnet")({
+          dap = { args = { justMyCode = false } },
+          discovery_root = "project",
+        })
+      )
     end,
-    -- Added: Your custom keymaps
     keys = {
       {
         "<leader>tn",
-        function() require("neotest").run.run() end,
-        desc = "Neotest: Run nearest test"
+        function()
+          require("neotest").run.run()
+        end,
+        desc = "Test: Run Nearest",
       },
       {
         "<leader>ts",
-        function() require("neotest").run.run({ strategy = "dap" }) end,
-        desc = "Neotest: Debug nearest test"
+        function()
+          require("neotest").run.run({ strategy = "dap" })
+        end,
+        desc = "Test: Debug Nearest",
       },
       {
         "<leader>tf",
-        function() require("neotest").run.run(vim.fn.expand("%")) end,
-        desc = "Neotest: Run tests in file"
+        function()
+          require("neotest").run.run(vim.fn.expand("%"))
+        end,
+        desc = "Test: Run File",
       },
-      -- Optional: Output panel toggle
+      {
+        "<leader>ta",
+        function()
+          require("neotest").run.run(vim.fn.getcwd())
+        end,
+        desc = "Test: Run All",
+      },
       {
         "<leader>to",
-        function() require("neotest").output_panel.toggle() end,
-        desc = "Neotest: Toggle Output Panel"
+        function()
+          require("neotest").output_panel.toggle()
+        end,
+        desc = "Test: Toggle Output",
       },
     },
   },

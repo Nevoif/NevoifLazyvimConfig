@@ -1,121 +1,31 @@
 -- ==============================
--- Keymaps.lua for LazyVim
+-- LazyVim Keymaps
 -- ==============================
+-- Non-conflicting shortcuts for .NET and Web Development
+-- 
+-- Note: Plugin-specific keybinds are now configured in their respective plugin files:
+-- - DAP keybinds: lua/plugins/csharpdap.lua
+-- - Telescope keybinds: lua/plugins/telescope-config.lua
+-- - Trouble keybinds: lua/plugins/trouble.lua
+-- - Gitsigns keybinds: lua/plugins/gitsigns-config.lua
+-- - Todo keybinds: lua/plugins/todo.lua
+-- - Buffer navigation: lua/plugins/bufferline-config.lua
+-- - Harpoon keybinds: lua/plugins/harpoon.lua
+-- - ToggleTerm keybinds: lua/plugins/toggleterm.lua
 
 local map = vim.keymap.set
 
 -- ==============================
--- DAP (Debug Adapter Protocol)
+-- Utility Keymaps
 -- ==============================
-map("n", "<leader>dy", function()
-  require("dapui").toggle()
-end, { noremap = true, silent = true, desc = "DAP: Toggle UI" })
-map("n", "<leader>db", function()
-  require("dap").toggle_breakpoint()
-end, { noremap = true, silent = true, desc = "DAP: Toggle Breakpoint" })
-map("n", "<leader>dc", function()
-  require("dap").continue()
-end, { noremap = true, silent = true, desc = "DAP: Continue" })
-map("n", "<leader>do", function()
-  require("dap").step_over()
-end, { noremap = true, silent = true, desc = "DAP: Step Over" })
-map("n", "<leader>di", function()
-  require("dap").step_into()
-end, { noremap = true, silent = true, desc = "DAP: Step Into" })
-map("n", "<leader>du", function()
-  require("dap").step_out()
-end, { noremap = true, silent = true, desc = "DAP: Step Out" })
-map("n", "<leader>dm", function()
-  require("dap").repl.toggle()
-end, { noremap = true, silent = true, desc = "DAP: Toggle REPL" })
-map("n", "<leader>dq", function()
-  require("dap").disconnect()
-end, { noremap = true, silent = true, desc = "DAP: Stop Debugging" })
-map("n", "<leader>dp", function()
-  require("dap").pause()
-end, { noremap = true, silent = true, desc = "DAP: Pause Execution" })
-map("n", "<leader>dl", function()
-  require("dap").run_last()
-end, { noremap = true, silent = true, desc = "DAP: Run Last Session" })
-map("n", "<leader>dx", function()
-  require("dap").set_exception_breakpoints({ "all" })
-end, { noremap = true, silent = true, desc = "DAP: Exception Breakpoints" })
-map("n", "<leader>dh", function()
-  require("dap.ui.widgets").hover()
-end, { noremap = true, silent = true, desc = "DAP: Hover Variables" })
-map("n", "<leader>df", function()
-  require("dap.ui.widgets").centered_float()
-end, { noremap = true, silent = true, desc = "DAP: Floating Window" })
-map({ "n", "v" }, "<leader>de", function()
-  require("dapui").eval()
-end, { noremap = true, silent = true, desc = "DAP: Evaluate Expression" })
-
--- ==============================
--- Telescope (Lazy-load safe)
--- ==============================
-map("n", "<leader>ff", function()
-  require("telescope.builtin").find_files()
-end, { noremap = true, silent = true, desc = "Telescope: Find Files" })
-map("n", "<leader>fg", function()
-  require("telescope.builtin").live_grep()
-end, { noremap = true, silent = true, desc = "Telescope: Live Grep" })
-map("n", "<leader>fb", function()
-  require("telescope.builtin").buffers()
-end, { noremap = true, silent = true, desc = "Telescope: List Buffers" })
-map("n", "<leader>fh", function()
-  require("telescope.builtin").help_tags()
-end, { noremap = true, silent = true, desc = "Telescope: Help Tags" })
-map("n", "<leader>gs", function()
-  require("telescope.builtin").git_status()
-end, { noremap = true, silent = true, desc = "Telescope: Git Status" })
-
--- ==============================
--- Trouble (Diagnostics)
--- ==============================
-map("n", "<leader>xx", "<cmd>TroubleToggle<CR>", { noremap = true, silent = true, desc = "Trouble: Toggle" })
-map(
-  "n",
-  "<leader>xw",
-  "<cmd>Trouble workspace_diagnostics<CR>",
-  { noremap = true, silent = true, desc = "Trouble: Workspace Diagnostics" }
-)
-map("n", "<leader>xl", "<cmd>Trouble loclist<CR>", { noremap = true, silent = true, desc = "Trouble: Location List" })
-map("n", "<leader>xq", "<cmd>Trouble quickfix<CR>", { noremap = true, silent = true, desc = "Trouble: Quickfix List" })
-
--- ==============================
--- Gitsigns
--- ==============================
-map("n", "]h", function()
-  require("gitsigns.nav_hunk").next_hunk()
-end, { noremap = true, silent = true, desc = "Git: Next Hunk" })
-map("n", "[h", function()
-  require("gitsigns.nav_hunk").prev_hunk()
-end, { noremap = true, silent = true, desc = "Git: Prev Hunk" })
-map("n", "<leader>hs", function()
-  require("gitsigns").stage_hunk()
-end, { noremap = true, silent = true, desc = "Git: Stage Hunk" })
-map("n", "<leader>hu", function()
-  require("gitsigns.nav_hunk").undo_stage_hunk()
-end, { noremap = true, silent = true, desc = "Git: Undo Stage Hunk" })
-map("n", "<leader>hp", function()
-  require("gitsigns").preview_hunk()
-end, { noremap = true, silent = true, desc = "Git: Preview Hunk" })
-
--- ==============================
--- Todo Comments
--- ==============================
-map("n", "<leader>xt", "<cmd>TodoTrouble<CR>", { noremap = true, silent = true, desc = "TodoComments: List TODOs" })
-
--- ==============================
--- Bufferline
--- ==============================
-map("n", "[b", "<cmd>BufferLineCyclePrev<CR>", { noremap = true, silent = true, desc = "Bufferline: Previous Buffer" })
-map("n", "]b", "<cmd>BufferLineCycleNext<CR>", { noremap = true, silent = true, desc = "Bufferline: Next Buffer" })
-
-
--- ==============================
--- ✨ ENRICHMENTS (New Stuff) ✨
--- ==============================
-
--- select all is added omg!!
 map("n", "<C-a>", "gg<S-v>G", { desc = "Select All" })
+
+-- ==============================
+-- Mini Surround - Quote/Bracket Operations
+-- ==============================
+-- Note: keybindings configured in mini-surround.lua
+-- <leader>msa = add surround
+-- <leader>msd = delete surround
+-- <leader>msr = replace surround
+-- <leader>msf = find surround
+-- <leader>msh = highlight surround

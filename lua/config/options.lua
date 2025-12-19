@@ -1,21 +1,29 @@
 -- Options are automatically loaded before lazy.nvim startup
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
--- Add any additional options here
-vim.lsp.inlay_hint.enable(false)
--- yoo i forgot this file even exists
--- i moved my csharp config to lua/plugins/dotnet.lua and lua/plugins/roslyn.lua
--- so this file is useless now
--- but i will keep it here just in case i want to add some global options later
--- like tab size or something
--- but for now i will just leave it empty
--- you can delete it if you want
--- but i will keep it for now
--- peace out i guess
--- maybe i will add some options later
--- who knows
--- bye
--- i said bye
--- i am bored
--- ok bye for real now
--- i will stop writing comments now
--- ok bye
+
+-- Global IDE Settings
+vim.o.autoindent = true
+vim.o.smartindent = true
+vim.o.expandtab = true
+vim.o.tabstop = 2
+vim.o.shiftwidth = 2
+
+-- LSP and Diagnostics
+vim.lsp.inlay_hint.enable(false) -- Disabled type hints; keep hints enabled per-plugin as configured
+vim.diagnostic.config({
+  signs = true,
+  underline = true,
+  update_in_insert = false,
+  severity_sort = true,
+})
+
+-- UI Enhancements
+vim.o.number = true
+vim.o.relativenumber = true
+vim.o.cursorline = true
+vim.o.signcolumn = "yes"
+vim.o.wrap = false
+
+-- Performance Optimizations
+vim.o.updatetime = 200      -- Faster swap file and diagnostic updates (default 4000ms)
+vim.o.timeoutlen = 300      -- Faster keymap timeout (default 1000ms)

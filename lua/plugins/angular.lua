@@ -1,20 +1,27 @@
 return {
-  -- 1. LSP: Angular Language Server
+  -- ================================
+  -- Angular Support
+  -- ================================
   {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        angularls = {},
-        -- Ensure HTML/CSS/Emmet are also active for templates
-        html = {},
-        cssls = {},
-        emmet_language_server = {
-          filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "angular" },
+        angularls = {
+          root_dir = function(fname)
+            return require("lspconfig.util").root_pattern("angular.json")(fname)
+          end,
         },
       },
     },
   },
 
+  -- Auto-close tags for templates
+  {
+    "windwp/nvim-ts-autotag",
+    opts = {},
+  },
+
+  -- Treesitter support for Angular templates
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
@@ -27,5 +34,24 @@ return {
         })
       end
     end,
+  },
+
+  -- Toggle between component .ts and .html
+  {
+    "neovim/nvim-lspconfig",
+    keys = {
+      {
+        "<leader>cy",
+        function()
+          local fname = vim.api.nvim_buf_get_name(0)
+          if fname:match("%.component%.ts$") then
+            vim.cmd("e " .. fname:gsub("%.component%.ts$", ".component.html"))
+          elseif fname:match("%.component%.html$") then
+            vim.cmd("e " .. fname:gsub("%.component%.html$", ".component.ts"))
+          end
+        end,
+        desc = "Angular: Toggle Component TS/HTML",
+      },
+    },
   },
 }

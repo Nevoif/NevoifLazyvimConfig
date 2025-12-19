@@ -1,8 +1,15 @@
 return {
-  -- 1. Auto-close tags
-  { "windwp/nvim-ts-autotag", opts = {} },
+  -- ================================
+  -- Web Development Support
+  -- ================================
 
-  -- 2. Linters (Added Hadolint)
+  -- Auto-close tags in HTML/Vue/JSX
+  {
+    "windwp/nvim-ts-autotag",
+    opts = {},
+  },
+
+  -- Linters for web
   {
     "mfussenegger/nvim-lint",
     opts = {
@@ -13,7 +20,7 @@ return {
     },
   },
 
-  -- 3. LSP Servers (Added Tailwind)
+  -- LSP servers for web development
   {
     "neovim/nvim-lspconfig",
     opts = {
@@ -38,10 +45,24 @@ return {
         vtsls = {
           settings = {
             typescript = {
-              inlayHints = { parameterNames = { enabled = "none" } },
+              inlayHints = {
+                parameterNames = { enabled = "literals" },
+                parameterTypes = { enabled = true },
+                variableTypes = { enabled = false },
+                propertyDeclarationTypes = { enabled = false },
+                functionLikeReturnTypes = { enabled = false },
+                enumMemberValues = { enabled = true },
+              },
             },
             javascript = {
-              inlayHints = { parameterNames = { enabled = "none" } },
+              inlayHints = {
+                parameterNames = { enabled = "literals" },
+                parameterTypes = { enabled = true },
+                variableTypes = { enabled = false },
+                propertyDeclarationTypes = { enabled = false },
+                functionLikeReturnTypes = { enabled = false },
+                enumMemberValues = { enabled = true },
+              },
             },
           },
         },
