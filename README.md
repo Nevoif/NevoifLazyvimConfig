@@ -69,7 +69,6 @@ sudo pacman -S base-devel unzip wget ripgrep fd
 brew install ripgrep fd
 
 # .net sdk 6.0+
-# download from https://dotnet.microsoft.com/download
 ```
 
 **global tools**
@@ -524,13 +523,4 @@ dotnet build
 
 ---
 
-## other guides
 
-- `QUICK_START.md` - getting started
-- `CHEAT_SHEET.md` - quick reference
-- `DEVELOPMENT_GUIDE.md` - complete guide
-- `OPTIMIZATION_DETAILS.md` - technical details
-
----
-
-happy coding 🚀
