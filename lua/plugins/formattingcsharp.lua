@@ -38,7 +38,7 @@ return {
       -- Formatter Configurations
       -- ========================================
       opts.formatters = opts.formatters or {}
-      
+
       opts.formatters.csharpier = {
         command = "dotnet-csharpier",
         args = { "--write-stdout" },
@@ -50,12 +50,6 @@ return {
 
       opts.formatters.stylua = {
         args = { "--indent-type", "Spaces", "--indent-width", "2", "-" },
-      }
-
-      -- Format on save
-      opts.format_on_save = {
-        timeout_ms = 500,
-        lsp_fallback = true,
       }
     end,
   },
