@@ -1,25 +1,26 @@
 return {
+  -- 1. Auto-close tags
+  { "windwp/nvim-ts-autotag", opts = {} },
+
+  -- 2. Linters (Added Hadolint)
   {
-    "mason.nvim",
-    opts = function(_, opts)
-      opts.ensure_installed = opts.ensure_installed or {}
-      vim.list_extend(opts.ensure_installed, {
-        "emmet-language-server", -- Emmet
-        "stylelint", -- CSS Linter
-        "htmlhint",
-      })
-    end,
+    "mfussenegger/nvim-lint",
+    opts = {
+      linters_by_ft = {
+        html = { "htmlhint" },
+        dockerfile = { "hadolint" },
+      },
+    },
   },
 
+  -- 3. LSP Servers (Added Tailwind)
   {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        -- Simple Web Servers
         html = {},
         cssls = {},
-
-        -- Emmet
+        tailwindcss = {},
         emmet_language_server = {
           filetypes = {
             "css",
@@ -34,25 +35,13 @@ return {
             "typescriptreact",
           },
         },
-
-        -- TypeScript / JavaScript (VTSLS)
         vtsls = {
           settings = {
             typescript = {
-              inlayHints = {
-                parameterNames = { enabled = "none" }, -- DISABLES "elementId"
-                parameterTypes = { enabled = false },
-                variableTypes = { enabled = false },
-                functionLikeReturnTypes = { enabled = false },
-              },
+              inlayHints = { parameterNames = { enabled = "none" } },
             },
             javascript = {
-              inlayHints = {
-                parameterNames = { enabled = "none" }, -- DISABLES "elementId"
-                parameterTypes = { enabled = false },
-                variableTypes = { enabled = false },
-                functionLikeReturnTypes = { enabled = false },
-              },
+              inlayHints = { parameterNames = { enabled = "none" } },
             },
           },
         },

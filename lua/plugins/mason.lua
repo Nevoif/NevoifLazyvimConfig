@@ -28,6 +28,14 @@ return {
       "marksman",
       "lua-language-server",
       "markdownlint-cli2",
+      "htmlhint",
+
+      "angular-language-server",
+
+      "shfmt",
+      "stylua",
+      "hadolint",
+      "tailwindcss-language-server",
     },
   },
 }
