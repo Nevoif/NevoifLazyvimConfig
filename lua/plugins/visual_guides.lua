@@ -3,7 +3,8 @@ return {
   -- Animated indent guides
   {
     "lukas-reineke/indent-blankline.nvim",
-    event = "VeryLazy",
+    lazy = true,
+    event = "BufRead",
     main = "ibl",
     opts = {
       indent = {
@@ -48,7 +49,8 @@ return {
   -- Visual column indicator (code quality guide at 120 chars)
   {
     "Bekaboo/deadcolumn.nvim",
-    event = "VeryLazy",
+    lazy = true,
+    event = "BufRead",
     config = function()
       require("deadcolumn").setup({
         threshold = 1,

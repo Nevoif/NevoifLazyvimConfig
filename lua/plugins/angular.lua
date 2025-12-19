@@ -4,6 +4,8 @@ return {
   -- ================================
   {
     "neovim/nvim-lspconfig",
+    lazy = true,
+    ft = { "typescript", "javascript", "typescriptreact", "javascriptreact" },
     opts = {
       servers = {
         angularls = {
@@ -18,6 +20,8 @@ return {
   -- Auto-close tags for templates
   {
     "windwp/nvim-ts-autotag",
+    lazy = true,
+    ft = { "html", "xml", "jsx", "tsx", "javascript", "typescript", "typescriptreact" },
     opts = {},
   },
 
@@ -38,7 +42,7 @@ return {
 
   -- Toggle between component .ts and .html
   {
-    "neovim/nvim-lspconfig",
+    "neovim/nvim-treesitter",
     keys = {
       {
         "<leader>cy",

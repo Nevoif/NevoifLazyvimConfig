@@ -1,6 +1,8 @@
 return {
   {
     "nvim-neotest/neotest",
+    lazy = true,
+    cmd = "Neotest",
     dependencies = { "Issafalcon/neotest-dotnet" },
     opts = function(_, opts)
       opts.adapters = opts.adapters or {}

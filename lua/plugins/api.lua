@@ -1,6 +1,7 @@
 return {
   {
     "mistweaverco/kulala.nvim",
+    lazy = true,
     ft = "http",
     dependencies = { "nvim-lua/plenary.nvim" },
     keys = {

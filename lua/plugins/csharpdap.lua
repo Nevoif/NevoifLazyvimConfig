@@ -1,6 +1,8 @@
 return {
   {
     "mfussenegger/nvim-dap",
+    lazy = true,
+    ft = "cs",
     optional = true,
     keys = {
       -- Breakpoints and Flow Control

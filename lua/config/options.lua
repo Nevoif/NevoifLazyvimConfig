@@ -15,6 +15,15 @@ vim.diagnostic.config({
   underline = true,
   update_in_insert = false,
   severity_sort = true,
+  virtual_text = {
+    prefix = "● ",
+    spacing = 4,
+  },
+  float = {
+    source = true,
+    border = "rounded",
+    focusable = true,
+  },
 })
 
 -- UI Enhancements
@@ -27,3 +36,7 @@ vim.o.wrap = false
 -- Performance Optimizations
 vim.o.updatetime = 200      -- Faster swap file and diagnostic updates (default 4000ms)
 vim.o.timeoutlen = 300      -- Faster keymap timeout (default 1000ms)
+
+-- LSP timeout (Roslyn needs more time)
+vim.lsp.set_log_level("warn") -- Show warnings but not debug spam
+vim.g.lsp_log_verbose = false

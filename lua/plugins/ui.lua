@@ -42,6 +42,8 @@ return {
   -- colorizer: show color codes with their actual color more front end thing
   {
     "NvChad/nvim-colorizer.lua",
+    lazy = true,
+    event = "VeryLazy",
     opts = {
       user_default_options = {
         names = false,

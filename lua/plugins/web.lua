@@ -6,12 +6,16 @@ return {
   -- Auto-close tags in HTML/Vue/JSX
   {
     "windwp/nvim-ts-autotag",
+    lazy = true,
+    ft = { "html", "xml", "jsx", "tsx", "javascript", "typescript", "typescriptreact", "vue" },
     opts = {},
   },
 
   -- Linters for web
   {
     "mfussenegger/nvim-lint",
+    lazy = true,
+    ft = { "html", "css", "javascript", "typescript", "json", "jsonc" },
     opts = {
       linters_by_ft = {
         html = { "htmlhint" },

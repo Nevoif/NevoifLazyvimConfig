@@ -1,6 +1,8 @@
 return {
   {
     "Kurren123/mssql.nvim",
+    lazy = true,
+    cmd = "Mssql",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       require("mssql").setup({

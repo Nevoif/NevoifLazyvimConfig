@@ -124,6 +124,56 @@ function theme.setup()
   vim.api.nvim_set_hl(0, "TelescopePromptBorder", { bg = t_bg, fg = c.accent })
   vim.api.nvim_set_hl(0, "TelescopePromptTitle", { bg = c.accent, fg = c.bg })
   vim.api.nvim_set_hl(0, "TelescopeSelection", { bg = c.light_bg, fg = c.accent, bold = true })
+
+  -- Indent-blankline
+  vim.api.nvim_set_hl(0, "IblIndent", { fg = c.dark_bg, nocombine = true })
+  vim.api.nvim_set_hl(0, "IblScope", { fg = c.light_bg, nocombine = true })
+  vim.api.nvim_set_hl(0, "IblWhitespace", { fg = c.dark_bg, nocombine = true })
+
+  -- Deadcolumn (visual guide at 120 chars)
+  vim.api.nvim_set_hl(0, "DeadColumn", { fg = c.grey })
+
+  -- Flash (search/navigation)
+  vim.api.nvim_set_hl(0, "FlashMatch", { bg = c.highlight, fg = c.accent, bold = true })
+  vim.api.nvim_set_hl(0, "FlashLabel", { bg = c.accent, fg = c.bg, bold = true })
+  vim.api.nvim_set_hl(0, "FlashBackdrop", { fg = c.comment })
+  vim.api.nvim_set_hl(0, "FlashSearch", { bg = c.yellow, fg = c.bg })
+  vim.api.nvim_set_hl(0, "FlashPromptIcon", { fg = c.accent })
+
+  -- Barbecue (breadcrumb)
+  vim.api.nvim_set_hl(0, "barbecue.normal", { fg = c.fg, bg = "NONE" })
+  vim.api.nvim_set_hl(0, "barbecue.ellipsis", { fg = c.comment })
+  vim.api.nvim_set_hl(0, "barbecue.separator", { fg = c.grey })
+
+  -- Illuminate (word highlight)
+  vim.api.nvim_set_hl(0, "IlluminatedWord", { bg = c.highlight, bold = false })
+  vim.api.nvim_set_hl(0, "IlluminatedCWord", { bg = c.highlight, bold = false })
+  vim.api.nvim_set_hl(0, "IlluminatedWordRead", { bg = c.highlight })
+  vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { bg = c.highlight })
+  vim.api.nvim_set_hl(0, "IlluminatedWordText", { bg = c.highlight })
+
+  -- Treesitter Context (sticky header)
+  vim.api.nvim_set_hl(0, "TreesitterContext", { bg = c.dark_bg })
+  vim.api.nvim_set_hl(0, "TreesitterContextLineNumber", { fg = c.accent, bg = c.dark_bg })
+
+  -- Git signs enhancements
+  vim.api.nvim_set_hl(0, "GitSignsAdd", { fg = c.green })
+  vim.api.nvim_set_hl(0, "GitSignsDelete", { fg = c.red })
+  vim.api.nvim_set_hl(0, "GitSignsChange", { fg = c.yellow })
+  vim.api.nvim_set_hl(0, "GitSignsAddNr", { fg = c.green })
+  vim.api.nvim_set_hl(0, "GitSignsDeleteNr", { fg = c.red })
+  vim.api.nvim_set_hl(0, "GitSignsChangeNr", { fg = c.yellow })
+  vim.api.nvim_set_hl(0, "GitSignsAddInline", { bg = c.dark_bg })
+  vim.api.nvim_set_hl(0, "GitSignsDeleteInline", { bg = c.dark_bg })
+  vim.api.nvim_set_hl(0, "GitSignsChangeInline", { bg = c.dark_bg })
+
+  -- Hover.nvim
+  vim.api.nvim_set_hl(0, "HoverNormal", { fg = c.fg, bg = c.dark_bg })
+  vim.api.nvim_set_hl(0, "HoverBorder", { fg = c.accent, bg = c.dark_bg })
+
+  -- Incline Floating Badges
+  vim.api.nvim_set_hl(0, "InclineNormal", { bg = c.light_bg, fg = c.fg })
+  vim.api.nvim_set_hl(0, "InclineModified", { bg = c.yellow, fg = c.bg, bold = true })
 end
 
 theme.setup()

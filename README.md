@@ -36,13 +36,29 @@ yo, this is my neovim setup. it's a full ide for c#/.net, web development, sql, 
 **navigation & ui**
 - harpoon for jumping between files (lifesaver for context switching)
 - aerial for seeing your code structure
-- telescope for fuzzy finding everything
+- telescope for fuzzy finding everything (now with flash for blazing fast jumps)
 - neo-tree file explorer (auto-hides bin/obj folders)
 - trouble for seeing all your errors/diagnostics
 - rainbow brackets, satellite scrollbar, incline file badges
 
+**visual polish** ✨
+- barbecue breadcrumb (delete if its too much) showing your exact code location (file > class > method)
+- indent guides with scope highlighting (see nested code structure instantly)
+- illuminate auto-highlighting all word matches under cursor
+- treesitter context sticky header (never lose track in big files)
+- flash jump (press 's' to jump anywhere on screen with 2 chars - feels like vscode)
+- smooth scrolling animations (ctrl+u/d feels premium)
+- deadcolumn at 120 chars (visual code quality guide, pep8 vibes)
+- better floating window styling with rounded borders
+- fidget for subtle lsp progress spinner (no annoying notifications)
+
+**git integration** 🚀
+- lazygit for full git ui inside neovim (branches, commits, staging - way faster than terminal)
+- diffview for side-by-side diffs and file history
+- gitsigns with blame showing who changed what and when
+- enhanced hunk preview, staging, and inline diffs
+
 **extras**
-- git integration (gitsigns for seeing changes)
 - auto-closing tags for html/jsx
 - incremental rename across your whole project
 - code action lightbulb
@@ -175,7 +191,7 @@ that's it. you're ready to code.
 | `<leader>rn` | rename symbol everywhere |
 | `<leader>ce` | toggle code structure sidebar |
 
-### finding things - `<leader>f`
+### finding & jumping - `<leader>f` + flash
 
 | key | what it does |
 |-----|-------------|
@@ -183,6 +199,8 @@ that's it. you're ready to code.
 | `<leader>fg` | search text in project |
 | `<leader>fb` | list open buffers |
 | `<leader>fh` | search help docs |
+| `s` | flash jump (type 2 chars to jump anywhere visible) |
+| `S` | flash backward search |
 
 ### diagnostics & errors - `<leader>x`
 
@@ -205,15 +223,21 @@ that's it. you're ready to code.
 | `<leader>3` | jump to harpoon file 3 |
 | `<leader>4` | jump to harpoon file 4 |
 
-### git
+### git - now with lazygit & diffview 🚀
 
 | key | what it does |
 |-----|-------------|
+| `<leader>gg` | open lazygit (full git ui, for losers) |
+| `<leader>gd` | diffview (side-by-side diffs) |
+| `<leader>gh` | file history |
 | `]h` | next git change |
 | `[h` | previous git change |
 | `<leader>hs` | stage hunk |
+| `<leader>hu` | undo stage hunk |
 | `<leader>hr` | reset hunk |
 | `<leader>hp` | preview hunk |
+| `<leader>hd` | diff this hunk |
+| `<leader>hb` | blame line (who changed it & when) |
 | `<leader>gs` | git status |
 
 ### built-in lsp (works everywhere)
@@ -347,13 +371,7 @@ cd my-angular-app && nvim
 # Content-Type: application/json
 
 # run it
-<leader>Rr
-
-# toggle to see headers/body
-<leader>Rt
-```
-
-### fast file navigation
+<leader>Rr (harpoon)
 
 ```bash
 # mark your most-used files
@@ -361,7 +379,7 @@ cd my-angular-app && nvim
 <leader>ha        # on YourService.cs
 <leader>ha        # on DbContext.cs
 
-# then jump between them
+# then jump between them instantly
 <leader>1         # Program.cs
 <leader>2         # YourService.cs
 <leader>3         # DbContext.cs
@@ -370,8 +388,40 @@ cd my-angular-app && nvim
 <leader>hh
 ```
 
-### see your code structure
+### blazing fast navigation (flash)
 
+```bash
+# jump to any visible location in 2 keypresses
+s              # start flash
+xy             # type any 2 visible chars on screen
+
+# backward search
+S              # flash backward
+```
+
+### see your code structure (aerial)
+
+```bash
+# toggle code outline
+<leader>ce
+
+# see all classes, methods, properties in a sidebar
+# press enter or click to jump there
+```
+
+### git workflows (lazygit)
+
+```bash
+# open full git ui inside neovim (for losers)
+<leader>gg
+
+# in lazygit:
+# a - add file to staging
+# c - commit
+# P - push
+# p - pull
+# b - switch branches
+# d - discard changes
 ```bash
 # toggle code outline
 <leader>ce

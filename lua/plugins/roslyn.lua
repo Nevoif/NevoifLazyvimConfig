@@ -1,6 +1,7 @@
 return {
   {
     "seblyng/roslyn.nvim",
+    lazy = true,
     ft = { "cs", "razor" },
     dependencies = {
       "mason-org/mason.nvim",
@@ -32,7 +33,11 @@ return {
           },
         },
         filewatching = "roslyn",
+        capabilities = require("blink.cmp").get_lsp_capabilities(),
       })
+
+      -- Increase timeout for Roslyn LSP operations
+      vim.lsp.handlers["$/progress"] = function() end
 
       vim.filetype.add({
         extension = {

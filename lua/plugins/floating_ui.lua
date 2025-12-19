@@ -104,7 +104,8 @@ return {
   -- Hover documentation enhancement
   {
     "lewis6991/hover.nvim",
-    event = "VeryLazy",
+    lazy = true,
+    event = "BufRead",
     config = function()
       require("hover").setup({
         init = function()

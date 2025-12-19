@@ -122,6 +122,52 @@ function theme.setup()
   vim.api.nvim_set_hl(0, "TelescopeResultsBorder", { bg = t_bg, fg = c.accent })
   vim.api.nvim_set_hl(0, "TelescopeResultsTitle", { bg = c.accent, fg = c.bg })
   vim.api.nvim_set_hl(0, "TelescopeSelection", { bg = "#303136", fg = c.accent, bold = true })
+
+  -- Indent-blankline
+  vim.api.nvim_set_hl(0, "IblIndent", { fg = "#2a2f3f", nocombine = true })
+  vim.api.nvim_set_hl(0, "IblScope", { fg = "#404854", nocombine = true })
+  vim.api.nvim_set_hl(0, "IblWhitespace", { fg = "#1a1f2f", nocombine = true })
+
+  -- Deadcolumn (visual guide at 120 chars)
+  vim.api.nvim_set_hl(0, "DeadColumn", { fg = "#544a6b" })
+
+  -- Flash (search/navigation)
+  vim.api.nvim_set_hl(0, "FlashMatch", { bg = c.highlight, fg = c.accent, bold = true })
+  vim.api.nvim_set_hl(0, "FlashLabel", { bg = c.accent, fg = c.bg, bold = true })
+  vim.api.nvim_set_hl(0, "FlashBackdrop", { fg = "#3a3f4f" })
+  vim.api.nvim_set_hl(0, "FlashSearch", { bg = c.yellow, fg = c.bg })
+  vim.api.nvim_set_hl(0, "FlashPromptIcon", { fg = c.accent })
+
+  -- Barbecue (breadcrumb)
+  vim.api.nvim_set_hl(0, "barbecue.normal", { fg = c.fg, bg = "NONE" })
+  vim.api.nvim_set_hl(0, "barbecue.ellipsis", { fg = c.comment })
+  vim.api.nvim_set_hl(0, "barbecue.separator", { fg = c.grey })
+
+  -- Illuminate (word highlight)
+  vim.api.nvim_set_hl(0, "IlluminatedWord", { bg = "#1d4a88", bold = false })
+  vim.api.nvim_set_hl(0, "IlluminatedCWord", { bg = "#1d4a88", bold = false })
+  vim.api.nvim_set_hl(0, "IlluminatedWordRead", { bg = "#1d4a88" })
+  vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { bg = "#1d4a88" })
+  vim.api.nvim_set_hl(0, "IlluminatedWordText", { bg = "#1d4a88" })
+
+  -- Treesitter Context (sticky header)
+  vim.api.nvim_set_hl(0, "TreesitterContext", { bg = "#151a25" })
+  vim.api.nvim_set_hl(0, "TreesitterContextLineNumber", { fg = c.accent, bg = "#151a25" })
+
+  -- Git signs enhancements
+  vim.api.nvim_set_hl(0, "GitSignsAdd", { fg = "#42E66C" })
+  vim.api.nvim_set_hl(0, "GitSignsDelete", { fg = "#E356A7" })
+  vim.api.nvim_set_hl(0, "GitSignsChange", { fg = "#EFA554" })
+  vim.api.nvim_set_hl(0, "GitSignsAddNr", { fg = "#42E66C" })
+  vim.api.nvim_set_hl(0, "GitSignsDeleteNr", { fg = "#E356A7" })
+  vim.api.nvim_set_hl(0, "GitSignsChangeNr", { fg = "#EFA554" })
+  vim.api.nvim_set_hl(0, "GitSignsAddInline", { bg = "#1a2d1a" })
+  vim.api.nvim_set_hl(0, "GitSignsDeleteInline", { bg = "#2d1a1a" })
+  vim.api.nvim_set_hl(0, "GitSignsChangeInline", { bg = "#2d1a1a" })
+
+  -- Hover.nvim
+  vim.api.nvim_set_hl(0, "HoverNormal", { fg = c.fg, bg = "#121317" })
+  vim.api.nvim_set_hl(0, "HoverBorder", { fg = c.accent, bg = "#121317" })
 end
 
 theme.setup()

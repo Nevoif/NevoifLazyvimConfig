@@ -3,6 +3,8 @@ return {
   -- Lazygit integration
   {
     "kdheepak/lazygit.nvim",
+    lazy = true,
+    cmd = "LazyGit",
     keys = {
       { "<leader>gg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
     },
@@ -12,7 +14,9 @@ return {
   },
 
   -- Diffview for better diff visualization
-  {
+  {lazy = true,
+    cmd = { "DiffviewOpen", "DiffviewFileHistory" },
+    
     "sindrets/diffview.nvim",
     keys = {
       { "<leader>gd", "<cmd>DiffviewOpen<cr>", desc = "Git: Diff View" },
@@ -26,6 +30,8 @@ return {
   -- Enhanced gitsigns with better visualization
   {
     "lewis6991/gitsigns.nvim",
+    lazy = true,
+    event = "BufReadPre",
     opts = {
       signs = {
         add = { text = "▎" },
@@ -97,6 +103,13 @@ return {
           require("gitsigns").preview_hunk()
         end,
         desc = "Gitsigns: Preview Hunk",
+      },
+      {
+        "<leader>hd",
+        function()
+          require("gitsigns").diffthis()
+        end,
+        desc = "Gitsigns: Diff This",
       },
       {
         "<leader>hb",

@@ -3,7 +3,8 @@ return {
   -- Highlight word under cursor and auto-highlight matches
   {
     "RRethy/vim-illuminate",
-    event = "VeryLazy",
+    lazy = true,
+    event = "BufRead",
     config = function()
       require("illuminate").configure({
         providers = {
@@ -29,7 +30,8 @@ return {
   -- Sticky header showing current function/class context
   {
     "nvim-treesitter/nvim-treesitter-context",
-    event = "VeryLazy",
+    lazy = true,
+    event = "BufRead",
     dependencies = "nvim-treesitter/nvim-treesitter",
     config = function()
       require("treesitter-context").setup({

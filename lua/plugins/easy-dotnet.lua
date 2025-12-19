@@ -1,6 +1,8 @@
 return {
   {
     "GustavEikaas/easy-dotnet.nvim",
+    lazy = true,
+    ft = "cs",
     ft = { "cs", "csproj", "sln" },
     dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
     config = function()
