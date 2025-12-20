@@ -4,7 +4,7 @@ return {
   -- ================================
   {
     "neovim/nvim-lspconfig",
-    lazy = true,
+    lazy = false,
     ft = { "typescript", "javascript", "typescriptreact", "javascriptreact" },
     opts = {
       servers = {

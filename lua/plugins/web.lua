@@ -27,6 +27,7 @@ return {
   -- LSP servers for web development
   {
     "neovim/nvim-lspconfig",
+    lazy = false,
     opts = {
       servers = {
         html = {},

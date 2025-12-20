@@ -1,7 +1,7 @@
 return {
   {
     "seblyng/roslyn.nvim",
-    lazy = true,
+    lazy = false,
     ft = { "cs", "razor" },
     dependencies = {
       "mason-org/mason.nvim",
@@ -18,6 +18,16 @@ return {
       },
     },
     config = function()
+      local capabilities = nil
+      -- Safely get blink.cmp capabilities if available
+      local ok, blink = pcall(require, "blink.cmp")
+      if ok then
+        capabilities = blink.get_lsp_capabilities()
+      else
+        -- Fallback to default capabilities if blink.cmp isn't loaded yet
+        capabilities = vim.lsp.protocol.make_client_capabilities()
+      end
+
       require("roslyn").setup({
         config = {
           settings = {
@@ -33,7 +43,7 @@ return {
           },
         },
         filewatching = "roslyn",
-        capabilities = require("blink.cmp").get_lsp_capabilities(),
+        capabilities = capabilities,
       })
 
       -- Increase timeout for Roslyn LSP operations
