@@ -6,7 +6,6 @@ return {
   -- Auto-close tags in HTML/Vue/JSX
   {
     "windwp/nvim-ts-autotag",
-    lazy = true,
     ft = { "html", "xml", "jsx", "tsx", "javascript", "typescript", "typescriptreact", "vue" },
     opts = {},
   },
@@ -14,7 +13,6 @@ return {
   -- Linters for web
   {
     "mfussenegger/nvim-lint",
-    lazy = true,
     ft = { "html", "css", "javascript", "typescript", "json", "jsonc" },
     opts = {
       linters_by_ft = {
@@ -27,7 +25,6 @@ return {
   -- LSP servers for web development
   {
     "neovim/nvim-lspconfig",
-    lazy = false,
     opts = {
       servers = {
         html = {},

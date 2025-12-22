@@ -2,7 +2,8 @@ return {
   {
     "stevearc/conform.nvim",
     lazy = true,
-    ft = "cs",
+    event = { "BufWritePre" }, -- Loads plugin on save, but won't auto-format without the option
+    cmd = { "ConformInfo" },
     opts = function(_, opts)
       opts.formatters_by_ft = opts.formatters_by_ft or {}
 
@@ -47,11 +48,11 @@ return {
       }
 
       opts.formatters.prettier = {
-        args = { "--prose-wrap", "always" },
+        args = { "--prose-wrap", "always", "--tab-width", "4" },
       }
 
       opts.formatters.stylua = {
-        args = { "--indent-type", "Spaces", "--indent-width", "2", "-" },
+        args = { "--indent-type", "Spaces", "--indent-width", "4", "-" },
       }
     end,
   },
