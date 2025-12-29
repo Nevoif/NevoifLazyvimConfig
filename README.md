@@ -6,6 +6,8 @@ yo, this is my neovim setup. it's a full ide for c#/.net, web development, sql, 
 
 **coding stuff**
 - roslyn for c# (faster than omnisharp, way lighter)
+- clangd for c/c++ (standard systems programming setup)
+- jdtls via nvim-java for java (full eclipse-grade support)
 - vtsls for typescript/javascript with smart hints
 - angular language server with component templates
 - html, css, tailwind, emmet for web
@@ -13,8 +15,10 @@ yo, this is my neovim setup. it's a full ide for c#/.net, web development, sql, 
 
 **debugging & testing**
 - full dap setup (breakpoints, step through, inspect variables, repl)
-- neotest for running unit tests with visual output
 - netcoredbg for .net debugging
+- codelldb for c/c++ debugging (fix those segfaults)
+- java debug adapter for java applications
+- neotest for running unit tests with visual output
 
 **building & running**
 - easy-dotnet for build/run commands
@@ -23,6 +27,7 @@ yo, this is my neovim setup. it's a full ide for c#/.net, web development, sql, 
 
 **formatting**
 - csharpier for c# (strict formatting, i like it)
+- clang-format for c/c++
 - prettier for web (typescript, javascript, html, css, json, yaml)
 - stylua for lua
 - black for python
@@ -85,9 +90,23 @@ sudo pacman -S base-devel unzip wget ripgrep fd
 brew install ripgrep fd
 
 # .net sdk 6.0+
+
+```
+
+**java & c++ essentials**
+
+```bash
+# java development kit (required for jdtls)
+sudo pacman -S jdk-openjdk    # arch
+brew install openjdk          # macos
+
+# c++ compiler
+sudo pacman -S gcc            # arch
+
 ```
 
 **global tools**
+
 ```bash
 # c# formatter (this is needed for formatting to work)
 dotnet tool install -g csharpier
@@ -95,9 +114,11 @@ dotnet tool install -g csharpier
 # optional but nice
 dotnet tool install -g dotnet-ef
 dotnet tool install -g dotnet-user-secrets
+
 ```
 
 **debugger & lsp**
+
 ```bash
 # c# debugger
 brew install netcoredbg        # macos
@@ -108,15 +129,18 @@ yay -S netcoredbg              # arch
 
 # node.js for web tools
 brew install node              # macos
+
 ```
 
 **if you're doing sql work**
+
 ```bash
 # add to ~/.zshrc or ~/.bashrc
 export MSSQL_USER="sa"
 export MSSQL_PASSWORD="your_password_here"
 
 # then: source ~/.zshrc
+
 ```
 
 ---
@@ -125,7 +149,7 @@ export MSSQL_PASSWORD="your_password_here"
 
 ```bash
 # clone into your nvim config
-git clone https://github.com/Nevoif/NevoifLazyvimConfig.git ~/.config/nvim
+git clone [https://github.com/Nevoif/NevoifLazyvimConfig.git](https://github.com/Nevoif/NevoifLazyvimConfig.git) ~/.config/nvim
 
 # open neovim
 nvim
@@ -140,6 +164,7 @@ nvim
 # restart neovim
 :q
 nvim
+
 ```
 
 that's it. you're ready to code.
@@ -151,7 +176,7 @@ that's it. you're ready to code.
 ### debugging - `<leader>d`
 
 | key | what it does |
-|-----|-------------|
+| --- | --- |
 | `<leader>db` | set/toggle breakpoint |
 | `<leader>dc` | continue/start debugging |
 | `<leader>do` | step over line |
@@ -167,7 +192,7 @@ that's it. you're ready to code.
 ### .net build & run
 
 | key | what it does |
-|-----|-------------|
+| --- | --- |
 | `<leader>B` | build solution (errors in quickfix) |
 | `<leader>dr` | run project |
 | `<leader>ds` | manage user secrets |
@@ -175,7 +200,7 @@ that's it. you're ready to code.
 ### testing - `<leader>t`
 
 | key | what it does |
-|-----|-------------|
+| --- | --- |
 | `<leader>tn` | run test at cursor |
 | `<leader>ts` | debug test at cursor |
 | `<leader>tf` | run all tests in file |
@@ -185,7 +210,7 @@ that's it. you're ready to code.
 ### code actions & refactoring
 
 | key | what it does |
-|-----|-------------|
+| --- | --- |
 | `<leader>cf` | roslyn code actions (fixes, refactors, suggestions) |
 | `<leader>cy` | angular: toggle .ts ↔ .html |
 | `<leader>rn` | rename symbol everywhere |
@@ -194,7 +219,7 @@ that's it. you're ready to code.
 ### finding & jumping - `<leader>f` + flash
 
 | key | what it does |
-|-----|-------------|
+| --- | --- |
 | `<leader>ff` | find files by name |
 | `<leader>fg` | search text in project |
 | `<leader>fb` | list open buffers |
@@ -205,7 +230,7 @@ that's it. you're ready to code.
 ### diagnostics & errors - `<leader>x`
 
 | key | what it does |
-|-----|-------------|
+| --- | --- |
 | `<leader>xx` | toggle diagnostics |
 | `<leader>xw` | workspace diagnostics |
 | `<leader>xl` | location list |
@@ -215,7 +240,7 @@ that's it. you're ready to code.
 ### harpoon (jump between files)
 
 | key | what it does |
-|-----|-------------|
+| --- | --- |
 | `<leader>ha` | add current file to harpoon |
 | `<leader>hh` | show harpoon menu |
 | `<leader>1` | jump to harpoon file 1 |
@@ -226,7 +251,7 @@ that's it. you're ready to code.
 ### git - now with lazygit & diffview 🚀
 
 | key | what it does |
-|-----|-------------|
+| --- | --- |
 | `<leader>gg` | open lazygit (full git ui, for losers) |
 | `<leader>gd` | diffview (side-by-side diffs) |
 | `<leader>gh` | file history |
@@ -243,7 +268,7 @@ that's it. you're ready to code.
 ### built-in lsp (works everywhere)
 
 | key | what it does |
-|-----|-------------|
+| --- | --- |
 | `gd` | go to definition |
 | `gr` | find all references |
 | `gi` | go to implementation |
@@ -252,7 +277,7 @@ that's it. you're ready to code.
 ### buffers
 
 | key | what it does |
-|-----|-------------|
+| --- | --- |
 | `[b` | previous buffer |
 | `]b` | next buffer |
 | `<C-a>` | select all |
@@ -260,14 +285,14 @@ that's it. you're ready to code.
 ### rest api
 
 | key | what it does |
-|-----|-------------|
-| `<leader>Rr` | send http request | 
+| --- | --- |
+| `<leader>Rr` | send http request |
 | `<leader>Rt` | toggle headers/body |
 
 ### sql
 
 | key | what it does |
-|-----|-------------|
+| --- | --- |
 | `:DBUI` | open database ui |
 | `<leader>sd` | toggle db ui |
 | `<leader>r` | run sql query |
@@ -275,13 +300,13 @@ that's it. you're ready to code.
 ### terminal
 
 | key | what it does |
-|-----|-------------|
+| --- | --- |
 | `<leader>`` | toggle terminal |
 
 ### surround - `<leader>m`
 
 | key | what it does |
-|-----|-------------|
+| --- | --- |
 | `<leader>msa` | add surround (quotes, brackets, etc) |
 | `<leader>msd` | delete surround |
 | `<leader>msr` | replace surround |
@@ -291,7 +316,7 @@ that's it. you're ready to code.
 ### session - `<leader>q`
 
 | key | what it does |
-|-----|-------------|
+| --- | --- |
 | `<leader>qs` | restore last session |
 | `<leader>qS` | select from saved sessions |
 | `<leader>ql` | restore last session |
@@ -299,7 +324,7 @@ that's it. you're ready to code.
 ### snippets
 
 | key | what it does |
-|-----|-------------|
+| --- | --- |
 | `<C-l>` | expand snippet / jump to next placeholder |
 | `<C-h>` | jump to previous placeholder |
 | `<C-u>` | cycle through choices |
@@ -320,6 +345,31 @@ dotnet new webapp -n myapp && cd myapp && nvim
 <leader>db        # set breakpoint somewhere
 <leader>dc        # start debugging
 <leader>do        # step through
+
+```
+
+### c++ / systems programming
+
+```bash
+# create file
+touch main.cpp && nvim main.cpp
+
+# in neovim:
+# write your code
+<leader>db        # set breakpoint
+<leader>dc        # compile (manual) & launch debugger
+
+```
+
+### java project
+
+```bash
+# open any java project
+nvim src/Main.java
+
+# wait for jdtls to attach (coffee cup icon)
+<leader>dc        # start debugging automatically
+
 ```
 
 ### angular development
@@ -335,6 +385,7 @@ cd my-angular-app && nvim
 
 # run tests
 <leader>tn
+
 ```
 
 ### unit testing
@@ -351,6 +402,7 @@ cd my-angular-app && nvim
 
 # see the output
 <leader>to
+
 ```
 
 ### sql queries
@@ -361,6 +413,7 @@ cd my-angular-app && nvim
 
 # run your query
 <leader>r
+
 ```
 
 ### testing apis
@@ -386,6 +439,7 @@ cd my-angular-app && nvim
 
 # or see all marked files
 <leader>hh
+
 ```
 
 ### blazing fast navigation (flash)
@@ -397,6 +451,7 @@ xy             # type any 2 visible chars on screen
 
 # backward search
 S              # flash backward
+
 ```
 
 ### see your code structure (aerial)
@@ -407,6 +462,7 @@ S              # flash backward
 
 # see all classes, methods, properties in a sidebar
 # press enter or click to jump there
+
 ```
 
 ### git workflows (lazygit)
@@ -428,6 +484,7 @@ S              # flash backward
 
 # see all classes, methods, properties
 # click on any of them to jump there
+
 ```
 
 ---
@@ -439,42 +496,48 @@ S              # flash backward
 ├── init.lua                      # entry point (minimal)
 ├── lua/
 │   ├── config/
-│   │   ├── options.lua          # global settings
-│   │   ├── keymaps.lua          # all keybindings
-│   │   ├── lazy.lua             # plugin setup
-│   │   └── autocmds.lua         # auto commands
-│   └── plugins/                 # plugin configs (auto-loaded)
-│       ├── roslyn.lua           # c# lsp
-│       ├── web.lua              # typescript/javascript/html/css
-│       ├── angular.lua          # angular specific
-│       ├── easy-dotnet.lua      # build/run
-│       ├── neotest.lua          # testing
-│       ├── csharpdap.lua        # debugging
-│       ├── mssql.lua            # mssql connection
-│       ├── sql.lua              # dadbod ui
-│       ├── mason.lua            # language servers
-│       ├── formattingcsharp.lua # formatters
-│       ├── ui.lua               # ui stuff
-│       ├── harpoon.lua          # file jumping
-│       ├── rename.lua           # rename refactoring
-│       ├── lightbulb.lua        # code actions
-│       ├── api.lua              # rest client
-│       ├── todo.lua             # todo comments
-│       ├── toggleterm.lua       # terminal
-│       ├── trouble.lua          # diagnostics
-│       ├── noice.lua            # better messages
-│       ├── editor.lua           # neo-tree file explorer
-│       └── orcatheme.lua        # theme colors
+│   │   ├── options.lua           # global settings
+│   │   ├── keymaps.lua           # all keybindings
+│   │   ├── lazy.lua              # plugin setup
+│   │   └── autocmds.lua          # auto commands
+│   └── plugins/                  # plugin configs (auto-loaded)
+│       ├── dap.lua               # core debugging (UI, C#, C++)
+│       ├── roslyn.lua            # c# lsp
+│       ├── cpp.lua               # c++ lsp (clangd)
+│       ├── java.lua              # java lsp (nvim-java)
+│       ├── web.lua               # typescript/javascript/html/css
+│       ├── angular.lua           # angular specific
+│       ├── easy-dotnet.lua       # build/run
+│       ├── neotest.lua           # testing
+│       ├── mssql.lua             # mssql connection
+│       ├── sql.lua               # dadbod ui
+│       ├── mason.lua             # language servers
+│       ├── formattingcsharp.lua  # formatters
+│       ├── ui.lua                # ui stuff
+│       ├── harpoon.lua           # file jumping
+│       ├── rename.lua            # rename refactoring
+│       ├── lightbulb.lua         # code actions
+│       ├── api.lua               # rest client
+│       ├── todo.lua              # todo comments
+│       ├── toggleterm.lua        # terminal
+│       ├── trouble.lua           # diagnostics
+│       ├── noice.lua             # better messages
+│       ├── editor.lua            # neo-tree file explorer
+│       └── orcatheme.lua         # theme colors
 └── colors/
-    └── orcatheme.lua            # color scheme
+    └── orcatheme.lua             # color scheme
+
 ```
 
 **the important ones:**
-- `lua/config/keymaps.lua` - all your shortcuts
-- `lua/plugins/roslyn.lua` - c# configuration
-- `lua/plugins/easy-dotnet.lua` - build/run setup
-- `lua/plugins/web.lua` - typescript/angular/html/css
-- `lua/plugins/neotest.lua` - test running
+
+* `lua/config/keymaps.lua` - all your shortcuts
+* `lua/plugins/dap.lua` - debugging configuration
+* `lua/plugins/roslyn.lua` - c# configuration
+* `lua/plugins/java.lua` - java configuration
+* `lua/plugins/easy-dotnet.lua` - build/run setup
+* `lua/plugins/web.lua` - typescript/angular/html/css
+* `lua/plugins/neotest.lua` - test running
 
 ---
 
@@ -507,36 +570,46 @@ S              # flash backward
 ## troubleshooting
 
 ### lsp not starting
+
 ```bash
 :MasonInstall roslyn
 # or whatever language you need
 # then try opening a file again
+
 ```
 
 ### formatter not working
+
 ```bash
 :MasonInstall prettier
 :MasonInstall csharpier
 :MasonInstall stylua
+
 ```
 
 ### tests not running
+
 ```bash
 # make sure you have [Fact] or [Test] attributes
 :MasonInstall neotest-dotnet
+
 ```
 
 ### debugging not working
+
 ```bash
 dotnet build
 :MasonInstall netcoredbg
 # set breakpoint: <leader>db
 # start debug: <leader>dc
+
 ```
 
 ### check startup time
+
 ```bash
 :StartupTime
+
 ```
 
 ---
@@ -550,6 +623,7 @@ dotnet build
 :LspInfo              # see lsp status
 :checkhealth          # overall health check
 :Telescope keymaps    # view all keybindings
+
 ```
 
 ---
@@ -557,8 +631,10 @@ dotnet build
 ## language support
 
 | language | lsp | formatter | debugger |
-|----------|-----|-----------|----------|
+| --- | --- | --- | --- |
 | c# | roslyn | csharpier | netcoredbg ✅ |
+| c/c++ | clangd | clang-format | codelldb ✅ |
+| java | jdtls | - | java-debug ✅ |
 | typescript | vtsls | prettier | builtin ✅ |
 | javascript | vtsls | prettier | builtin ✅ |
 | angular | angularls | prettier | builtin ✅ |
@@ -570,7 +646,3 @@ dotnet build
 | yaml | yaml-lsp | - | - ✅ |
 | docker | docker-lsp | - | - ✅ |
 | powershell | pwsh-lsp | - | - ✅ |
-
----
-
-
