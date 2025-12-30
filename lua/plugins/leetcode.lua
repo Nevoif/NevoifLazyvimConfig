@@ -11,20 +11,27 @@ return {
         },
         opts = {
             arg = leet_arg,
-            lang = "csharp", -- Set C# as default
-
-            cn = {
-                enabled = false,
-            },
+            lang = "csharp",
+            cn = { enabled = false },
 
             storage = {
                 home = vim.fn.stdpath("data") .. "/leetcode",
                 cache = vim.fn.stdpath("cache") .. "/leetcode",
             },
 
-            picker = { provider = "telescope" },
+            -- Add keymaps for convenience
+            keys = {
+                toggle = { "q" },
+                confirm = { "<CR>" },
+            },
 
-            -- Visual settings
+            hooks = {
+                -- Auto-save before running/submitting
+                ["enter"] = function()
+                    vim.cmd("silent! wa")
+                end,
+            },
+
             description = {
                 position = "left",
                 width = "40%",
@@ -35,14 +42,29 @@ return {
                 open_on_runcode = true,
                 dir = "row",
                 size = { width = "90%", height = "75%" },
-            },
-
-            -- Injector: Useful if you want default "using" statements
-            injector = {
-                ["csharp"] = {
-                    before = { "using System;", "using System.Collections.Generic;", "using System.Linq;" },
+                result = {
+                    size = "60%",
                 },
             },
+
+            injector = {
+                ["csharp"] = {
+                    before = {
+                        "using System;",
+                        "using System.Collections.Generic;",
+                        "using System.Linq;",
+                        "using System.Text;", -- Often needed
+                    },
+                },
+            },
+        },
+
+        -- Optional: Add key mappings for quick access
+        keys = {
+            { "<leader>rq", "<cmd>Leet list<cr>", desc = "LeetCode Question List" },
+            { "<leader>rr", "<cmd>Leet run<cr>", desc = "LeetCode Run" },
+            { "<leader>rs", "<cmd>Leet submit<cr>", desc = "LeetCode Submit" },
+            { "<leader>rd", "<cmd>Leet desc<cr>", desc = "LeetCode Description" },
         },
     },
 }
