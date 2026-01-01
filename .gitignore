@@ -20,3 +20,4 @@ debug/
 .repro/
 doc/tags
 .tests/
+lua/local/

@@ -63,6 +63,13 @@ return {
             "hadolint",
             "htmlhint",
             "powershell-editor-services",
+
+            -- ========================================
+            -- -- SQL stuff
+            -- ========================================
+            --
+            "sqlls",
+            "sqlfluff",
         },
     },
 }
