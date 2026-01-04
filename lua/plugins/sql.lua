@@ -37,7 +37,7 @@ return {
         keys = {
             { "<leader>Dd", "<cmd>DBUIToggle<cr>", desc = "SQL: Toggle DB UI" },
             { "<leader>Dr", "<cmd>DB<cr>", desc = "SQL: Run Query", ft = { "sql", "mysql", "plsql" } },
-            { "<leader>Da", "<cmd>DBUIAddConnection<cr>", desc = "SQL: Add Connection" }, -- ← Add this
+            { "<leader>Da", "<cmd>DBUIAddConnection<cr>", desc = "SQL: Add Connection" },
         },
     },
     {
