@@ -52,6 +52,8 @@ return {
             "stylua",
             "python-lsp-server",
             "black",
+            "isort",
+            "debugpy",
             "marksman",
             "markdownlint-cli2",
 

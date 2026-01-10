@@ -56,6 +56,15 @@ return {
             opts.formatters.sqlfluff = {
                 args = { "format", "--dialect=postgres", "-" },
             }
+            -- ========================================
+            -- Python Formatters
+            -- ========================================
+            opts.formatters.black = {
+                args = { "--line-length", "88", "-" },
+            }
+            opts.formatters.isort = {
+                args = { "--profile", "black", "-" },
+            }
         end,
     },
 }

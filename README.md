@@ -1,6 +1,6 @@
 # lazyvim config - complete guide
 
-yo, this is my neovim setup. it's a full ide for c#/.net, web development, sql, and basically anything modern development throws at you. works great on linux and macos.
+yo, this is my neovim setup. it's a full ide for c#/.net, web development, python, sql, and basically anything modern development throws at you. works great on linux and macos.
 
 ## what's in here
 
@@ -11,23 +11,28 @@ yo, this is my neovim setup. it's a full ide for c#/.net, web development, sql, 
 - vtsls for typescript/javascript with smart hints
 - angular language server with component templates
 - html, css, tailwind, emmet for web
-- lua, python, docker, yaml, bash, powershell
+- **python (pylsp + pyright) for full python development** ✨ NEW
+- lua, docker, yaml, bash, powershell
 
 **debugging & testing**
 - full dap setup (breakpoints, step through, inspect variables, repl)
 - netcoredbg for .net debugging
 - codelldb for c/c++ debugging (fix those segfaults)
 - java debug adapter for java applications
-- neotest for running unit tests with visual output
+- **debugpy for python debugging** ✨ NEW
+- neotest for running unit tests with visual output (python + .NET support)
+- **pytest integration for python** ✨ NEW
 
 **building & running**
 - easy-dotnet for build/run commands
 - kulala rest client (test your apis without postman)
 - toggleterm for quick terminal access
+- **code_runner for python scripts** ✨ NEW
 
 **formatting**
 - csharpier for c# (strict formatting, i like it)
 - clang-format for c/c++
+- **black + isort for python** ✨ NEW
 - prettier for web (typescript, javascript, html, css, json, yaml)
 - stylua for lua
 - black for python
