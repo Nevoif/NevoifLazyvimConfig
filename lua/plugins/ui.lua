@@ -54,6 +54,14 @@ return {
         },
     },
 
+    -- This tells LazyVim's internal LSP system to keep hints OFF by default
+    {
+        "neovim/nvim-lspconfig",
+        opts = {
+            inlay_hints = { enabled = false },
+        },
+    },
+
     -- floating filename badges
     {
         "b0o/incline.nvim",
