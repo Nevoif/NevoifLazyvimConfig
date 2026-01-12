@@ -1,20 +1,43 @@
 return {
+    -- 1. LSP: BasedPyright (Intelligence) + Ruff (Linting/Formatting)
     {
         "neovim/nvim-lspconfig",
         opts = {
             servers = {
-                pylsp = {
+                -- BasedPyright
+                basedpyright = {
                     settings = {
-                        pylsp = {
-                            plugins = {
-                                pycodestyle = { enabled = false },
-                                pydocstyle = { enabled = false },
-                                pyflakes = { enabled = true },
-                                mccabe = { enabled = false },
-                                autopep8 = { enabled = false },
-                                pylint = { enabled = false },
-                                jedi_completion = { enabled = true },
+                        basedpyright = {
+                            analysis = {
+                                typeCheckingMode = "standard", -- Change to "basic" if too noisy, or "strict" for max power
+                                autoSearchPaths = true,
+                                useLibraryCodeForTypes = true,
+                                diagnosticMode = "openFilesOnly",
                             },
+                        },
+                    },
+                },
+                -- Ruff: Blazing fast linter & formatter (Replaces flake8, isort, black, pylint)
+                ruff = {
+                    cmd_env = { RUFF_TRACE = "messages" },
+                    init_options = {
+                        settings = {
+                            logLevel = "error",
+                        },
+                    },
+                    keys = {
+                        {
+                            "<leader>co",
+                            function()
+                                vim.lsp.buf.code_action({
+                                    apply = true,
+                                    context = {
+                                        only = { "source.organizeImports" },
+                                        diagnostics = {},
+                                    },
+                                })
+                            end,
+                            desc = "Organize Imports",
                         },
                     },
                 },
@@ -22,9 +45,20 @@ return {
         },
     },
 
+    -- 2. Formatting: Use Ruff to format (it's instant)
+    {
+        "stevearc/conform.nvim",
+        opts = {
+            formatters_by_ft = {
+                python = { "ruff_format", "ruff_fix" },
+            },
+        },
+    },
+
+    -- 3. Testing: Neotest with Python adapter
     {
         "nvim-neotest/neotest",
-        optional = true,
+        optional = false,
         dependencies = { "nvim-neotest/neotest-python" },
         opts = function(_, opts)
             opts.adapters = opts.adapters or {}
@@ -32,7 +66,7 @@ return {
                 opts.adapters,
                 require("neotest-python")({
                     dap = {
-                        justMyCode = false,
+                        justMyCode = true,
                         console = "integratedTerminal",
                     },
                     args = { "--tb=short" },
@@ -40,81 +74,6 @@ return {
                 })
             )
         end,
-    },
-
-    {
-        "mfussenegger/nvim-dap",
-        optional = true,
-        config = function()
-            local dap = require("dap")
-
-            -- Setup Python adapter using debugpy
-            if not dap.adapters["python"] then
-                dap.adapters["python"] = {
-                    type = "executable",
-                    command = vim.fn.exepath("python"),
-                    args = { "-m", "debugpy.adapter" },
-                }
-            end
-
-            dap.configurations.python = {
-                {
-                    type = "python",
-                    name = "Launch file",
-                    request = "launch",
-                    program = "${file}",
-                    pythonPath = function()
-                        -- Auto-detect Python interpreter
-                        local venv = os.getenv("VIRTUAL_ENV")
-                        if venv then
-                            return venv .. "/bin/python"
-                        else
-                            return vim.fn.exepath("python") or vim.fn.exepath("python3")
-                        end
-                    end,
-                    cwd = "${workspaceFolder}",
-                    console = "integratedTerminal",
-                    justMyCode = false,
-                },
-                {
-                    type = "python",
-                    name = "Attach to process",
-                    request = "attach",
-                    processId = require("dap.utils").pick_process,
-                    pythonPath = function()
-                        local venv = os.getenv("VIRTUAL_ENV")
-                        if venv then
-                            return venv .. "/bin/python"
-                        else
-                            return vim.fn.exepath("python") or vim.fn.exepath("python3")
-                        end
-                    end,
-                },
-                {
-                    type = "python",
-                    name = "Launch pytest",
-                    request = "launch",
-                    module = "pytest",
-                    args = { "${file}", "-v" },
-                    console = "integratedTerminal",
-                    justMyCode = false,
-                    cwd = "${workspaceFolder}",
-                    pythonPath = function()
-                        local venv = os.getenv("VIRTUAL_ENV")
-                        if venv then
-                            return venv .. "/bin/python"
-                        else
-                            return vim.fn.exepath("python") or vim.fn.exepath("python3")
-                        end
-                    end,
-                },
-            }
-        end,
-    },
-
-    {
-        "nvim-neotest/neotest",
-        optional = true,
         keys = {
             {
                 "<leader>ptn",
@@ -154,7 +113,64 @@ return {
         },
     },
 
-    --visual environment selector btw
+    -- 4. Debugging: DAP with debugpy
+    {
+        "mfussenegger/nvim-dap",
+        optional = false,
+        config = function()
+            local dap = require("dap")
+
+            -- Setup Python adapter using debugpy
+            if not dap.adapters["python"] then
+                dap.adapters["python"] = {
+                    type = "executable",
+                    command = vim.fn.exepath("python"), -- Uses current env python
+                    args = { "-m", "debugpy.adapter" },
+                }
+            end
+
+            dap.configurations.python = {
+                {
+                    type = "python",
+                    name = "Launch file",
+                    request = "launch",
+                    program = "${file}",
+                    -- Intelligent pythonPath detection for virtual environments
+                    pythonPath = function()
+                        local venv = os.getenv("VIRTUAL_ENV")
+                        if venv then
+                            return venv .. "/bin/python"
+                        else
+                            return vim.fn.exepath("python") or vim.fn.exepath("python3")
+                        end
+                    end,
+                    cwd = "${workspaceFolder}",
+                    console = "integratedTerminal",
+                    justMyCode = true,
+                },
+                {
+                    type = "python",
+                    name = "Launch pytest",
+                    request = "launch",
+                    module = "pytest",
+                    args = { "${file}", "-v" },
+                    console = "integratedTerminal",
+                    justMyCode = true,
+                    cwd = "${workspaceFolder}",
+                    pythonPath = function()
+                        local venv = os.getenv("VIRTUAL_ENV")
+                        if venv then
+                            return venv .. "/bin/python"
+                        else
+                            return vim.fn.exepath("python") or vim.fn.exepath("python3")
+                        end
+                    end,
+                },
+            }
+        end,
+    },
+
+    -- 5. Virtual Environment Selector
     {
         "linux-cultist/venv-selector.nvim",
         dependencies = { "neovim/nvim-lspconfig", "mfussenegger/nvim-dap", "mfussenegger/nvim-dap-python" },
@@ -164,11 +180,7 @@ return {
             fd_binary_name = "fd",
         },
         keys = {
-            {
-                "<leader>pv",
-                "<cmd>VenvSelect<cr>",
-                desc = "Python: Select Virtual Environment",
-            },
+            { "<leader>pv", "<cmd>VenvSelect<cr>", desc = "Python: Select Virtual Environment" },
         },
     },
 }
