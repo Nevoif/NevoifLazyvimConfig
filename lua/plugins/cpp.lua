@@ -4,8 +4,12 @@ return {
         opts = {
             servers = {
                 clangd = {
-                    -- Optional: Fix offset encoding conflicts
-                    cmd = { "clangd", "--offset-encoding=utf-16" },
+                    -- fixed offset encoding and disabled inlay hints
+                    cmd = {
+                        "clangd",
+                        "--offset-encoding=utf-16",
+                        "--inlay-hints=false",
+                    },
                 },
             },
         },
