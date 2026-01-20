@@ -24,6 +24,7 @@ return {
             "jdtls", -- Java LSP
             "java-debug-adapter", -- Java Debugger (Required for nvim-java)
             "java-test", -- Java Test Runner (Required for nvim-java)
+            "r-languageserver",
 
             -- ========================================
             -- Web Development
