@@ -26,6 +26,11 @@ return {
             opts.formatters_by_ft.markdown = { "prettier" }
             opts.formatters_by_ft.yaml = { "prettier" }
             opts.formatters_by_ft["angular.html"] = { "prettier" }
+            --=========
+            --    -- idk R support?
+            --=========
+            opts.formatters_by_ft.r = { "styler" }
+            opts.formatters_by_ft.rmd = { "styler" }
             -- ========================================
             -- Database / SQL
             -- ========================================
