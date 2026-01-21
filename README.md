@@ -1,6 +1,6 @@
 # lazyvim config - complete guide
 
-yo, this is my neovim setup. it's a full ide for c#/.net, web development, python, sql, and basically anything modern development throws at you. works great on linux and macos.
+hello! this is my neovim setup. it's a full ide for c#/.net, web development, python, R/data analysis, sql, and basically whatever i need to use rn or later. works great on linux and windows, i saw people having issues with formattings and stuff on macos so there is that!
 
 ## what's in here
 
@@ -11,7 +11,8 @@ yo, this is my neovim setup. it's a full ide for c#/.net, web development, pytho
 - vtsls for typescript/javascript with smart hints
 - angular language server with component templates
 - html, css, tailwind, emmet for web
-- **python (pylsp + pyright) for full python development** ✨ NEW
+- pylsp + pyright for python (full python development)
+- r_language_server for R with styler formatting (data science ready)
 - lua, docker, yaml, bash, powershell
 
 **debugging & testing**
@@ -19,29 +20,32 @@ yo, this is my neovim setup. it's a full ide for c#/.net, web development, pytho
 - netcoredbg for .net debugging
 - codelldb for c/c++ debugging (fix those segfaults)
 - java debug adapter for java applications
-- **debugpy for python debugging** ✨ NEW
+- debugpy for python debugging
+- dap virtual text (see variable values inline while debugging)
 - neotest for running unit tests with visual output (python + .NET support)
-- **pytest integration for python** ✨ NEW
+- pytest integration for python
 
 **building & running**
 - easy-dotnet for build/run commands
 - kulala rest client (test your apis without postman)
 - toggleterm for quick terminal access
-- **code_runner for python scripts** ✨ NEW
+- code_runner for python scripts
+- overseer for running tasks
 
 **formatting**
 - csharpier for c# (strict formatting, i like it)
 - clang-format for c/c++
-- **black + isort for python** ✨ NEW
+- black + isort for python
+- styler for R (tidyverse style formatting)
 - prettier for web (typescript, javascript, html, css, json, yaml)
 - stylua for lua
-- black for python
 - htmlhint and hadolint for checking your code
 
 **database & sql**
 - dadbod ui for sql queries
-- mssql support with env variables
+- easy mssql connection with env variables
 - sql syntax highlighting
+- visual query results
 
 **navigation & ui**
 - harpoon for jumping between files (lifesaver for context switching)
@@ -51,8 +55,8 @@ yo, this is my neovim setup. it's a full ide for c#/.net, web development, pytho
 - trouble for seeing all your errors/diagnostics
 - rainbow brackets, satellite scrollbar, incline file badges
 
-**visual polish** ✨
-- barbecue breadcrumb (delete if its too much) showing your exact code location (file > class > method)
+**visual polish**
+- barbecue breadcrumb showing your exact code location (file > class > method)
 - indent guides with scope highlighting (see nested code structure instantly)
 - illuminate auto-highlighting all word matches under cursor
 - treesitter context sticky header (never lose track in big files)
@@ -61,23 +65,28 @@ yo, this is my neovim setup. it's a full ide for c#/.net, web development, pytho
 - deadcolumn at 120 chars (visual code quality guide, pep8 vibes)
 - better floating window styling with rounded borders
 - fidget for subtle lsp progress spinner (no annoying notifications)
+- improved inlay hints (see types and parameter names inline)
 
-**git integration** 🚀
-- lazygit for full git ui inside neovim (branches, commits, staging - way faster than terminal)
+**git integration**
+- lazygit for full git ui inside neovim (branches, commits, staging - you should learn console commands tho.)
 - diffview for side-by-side diffs and file history
 - gitsigns with blame showing who changed what and when
 - enhanced hunk preview, staging, and inline diffs
 
-**extras**
-- auto-closing tags for html/jsx
+**smart refactoring & code intelligence**
+- avante.nvim for ai-powered refactoring
+- package-info.nvim for checking outdated dependencies in package.json
 - incremental rename across your whole project
 - code action lightbulb
+- auto-closing tags for html/jsx
+
+**extras**
 - todo comment highlighting
-- overseer for running tasks
 - which-key for discovering keybindings
 - luasnip for code snippets
 - mini.surround for manipulating quotes/brackets
 - persistence for session management (restore buffers)
+- noice for better messages and notifications
 
 ---
 
@@ -95,7 +104,6 @@ sudo pacman -S base-devel unzip wget ripgrep fd
 brew install ripgrep fd
 
 # .net sdk 6.0+
-
 ```
 
 **java & c++ essentials**
@@ -107,7 +115,24 @@ brew install openjdk          # macos
 
 # c++ compiler
 sudo pacman -S gcc            # arch
+```
 
+**python setup**
+```bash
+# python 3.8+ (usually pre-installed)
+# pip for installing formatters
+pip install black isort
+```
+
+**R setup (for data analysis)**
+```bash
+# install R
+brew install r                # macos
+sudo pacman -S r              # arch
+
+# in R console, install language server and formatter:
+install.packages("languageserver")
+install.packages("styler")
 ```
 
 **global tools**
@@ -119,7 +144,6 @@ dotnet tool install -g csharpier
 # optional but nice
 dotnet tool install -g dotnet-ef
 dotnet tool install -g dotnet-user-secrets
-
 ```
 
 **debugger & lsp**
@@ -134,7 +158,6 @@ yay -S netcoredbg              # arch
 
 # node.js for web tools
 brew install node              # macos
-
 ```
 
 **if you're doing sql work**
@@ -145,7 +168,6 @@ export MSSQL_USER="sa"
 export MSSQL_PASSWORD="your_password_here"
 
 # then: source ~/.zshrc
-
 ```
 
 ---
@@ -154,22 +176,17 @@ export MSSQL_PASSWORD="your_password_here"
 
 ```bash
 # clone into your nvim config
-git clone [https://github.com/Nevoif/NevoifLazyvimConfig.git](https://github.com/Nevoif/NevoifLazyvimConfig.git) ~/.config/nvim
+git clone https://github.com/Nevoif/NevoifLazyvimConfig.git ~/.config/nvim
 
 # open neovim
 nvim
 
 # wait for plugins to install (first time takes a minute)
-# then install language servers
-:MasonInstall
+# mason will automatically install language servers
 
-# you can just press 'I' to install all at once
-# or 'i' on each one individually
-
-# restart neovim
+# restart neovim if needed
 :q
 nvim
-
 ```
 
 that's it. you're ready to code.
@@ -193,6 +210,8 @@ that's it. you're ready to code.
 | `<leader>de` | evaluate expression (select in visual mode) |
 | `<leader>dx` | exception breakpoints |
 | `<leader>dq` | stop debugging |
+
+**tip**: with dap virtual text enabled, you'll see variable values directly inline as you step through code
 
 ### .net build & run
 
@@ -253,11 +272,11 @@ that's it. you're ready to code.
 | `<leader>3` | jump to harpoon file 3 |
 | `<leader>4` | jump to harpoon file 4 |
 
-### git - now with lazygit & diffview 🚀
+### git - now with lazygit & diffview
 
 | key | what it does |
 | --- | --- |
-| `<leader>gg` | open lazygit (full git ui, for losers) |
+| `<leader>gg` | open lazygit (full git ui) |
 | `<leader>gd` | diffview (side-by-side diffs) |
 | `<leader>gh` | file history |
 | `]h` | next git change |
@@ -350,8 +369,45 @@ dotnet new webapp -n myapp && cd myapp && nvim
 <leader>db        # set breakpoint somewhere
 <leader>dc        # start debugging
 <leader>do        # step through
-
+# watch variables appear inline thanks to dap virtual text
 ```
+
+### python development
+
+```bash
+# create file
+touch script.py && nvim script.py
+
+# in neovim:
+# write your code
+<leader>db        # set breakpoint
+<leader>dc        # start debugging
+<leader>tn        # run pytest tests
+
+# formatting happens automatically on save
+# black for code, isort for imports
+```
+
+### R / data analysis
+
+```bash
+# open R script or project
+nvim analysis.R
+
+# in neovim:
+# write your R code
+K              # show function documentation
+gd             # go to definition
+<leader>cf     # code actions (refactor, extract function)
+:w             # save (auto-formats with styler)
+
+# for interactive work:
+<leader>`      # toggle terminal
+# R             # start R console
+# source("analysis.R")
+```
+
+**tip for R users**: styler will format your code to tidyverse style guide. if you prefer base R style, you can configure it in `lua/plugins/r.lua`
 
 ### c++ / systems programming
 
@@ -363,7 +419,8 @@ touch main.cpp && nvim main.cpp
 # write your code
 <leader>db        # set breakpoint
 <leader>dc        # compile (manual) & launch debugger
-
+<leader>do        # step through
+# see variable values inline while debugging
 ```
 
 ### java project
@@ -374,7 +431,6 @@ nvim src/Main.java
 
 # wait for jdtls to attach (coffee cup icon)
 <leader>dc        # start debugging automatically
-
 ```
 
 ### angular development
@@ -391,6 +447,8 @@ cd my-angular-app && nvim
 # run tests
 <leader>tn
 
+# check for outdated packages
+# package-info.nvim shows versions inline in package.json
 ```
 
 ### unit testing
@@ -407,18 +465,20 @@ cd my-angular-app && nvim
 
 # see the output
 <leader>to
-
 ```
 
 ### sql queries
 
 ```bash
+# set up your connection first (see setup section above)
 # open database ui
 :DBUI
 
-# run your query
-<leader>r
-
+# navigate to your database
+# select your table
+# write query
+<leader>r        # run it
+# results show in a nice table view
 ```
 
 ### testing apis
@@ -429,7 +489,13 @@ cd my-angular-app && nvim
 # Content-Type: application/json
 
 # run it
-<leader>Rr (harpoon)
+<leader>Rr
+
+# see response in split window
+# toggle between headers and body with <leader>Rt
+```
+
+### harpoon workflow
 
 ```bash
 # mark your most-used files
@@ -444,8 +510,9 @@ cd my-angular-app && nvim
 
 # or see all marked files
 <leader>hh
-
 ```
+
+this is a lifesaver when you're jumping between controllers, services, and models constantly
 
 ### blazing fast navigation (flash)
 
@@ -456,8 +523,9 @@ xy             # type any 2 visible chars on screen
 
 # backward search
 S              # flash backward
-
 ```
+
+way faster than spamming `w` or `/` searching
 
 ### see your code structure (aerial)
 
@@ -467,13 +535,14 @@ S              # flash backward
 
 # see all classes, methods, properties in a sidebar
 # press enter or click to jump there
-
 ```
+
+super useful in large files - see everything at a glance
 
 ### git workflows (lazygit)
 
 ```bash
-# open full git ui inside neovim (for losers)
+# open full git ui inside neovim
 <leader>gg
 
 # in lazygit:
@@ -483,13 +552,12 @@ S              # flash backward
 # p - pull
 # b - switch branches
 # d - discard changes
-```bash
-# toggle code outline
-<leader>ce
+# enter - see diff
 
-# see all classes, methods, properties
-# click on any of them to jump there
-
+# or for quick stuff:
+<leader>hp       # preview git hunk under cursor
+<leader>hs       # stage it
+<leader>hb       # see who changed this line
 ```
 
 ---
@@ -506,14 +574,16 @@ S              # flash backward
 │   │   ├── lazy.lua              # plugin setup
 │   │   └── autocmds.lua          # auto commands
 │   └── plugins/                  # plugin configs (auto-loaded)
-│       ├── dap.lua               # core debugging (UI, C#, C++)
+│       ├── dap.lua               # core debugging (UI, C#, C++, Python)
 │       ├── roslyn.lua            # c# lsp
 │       ├── cpp.lua               # c++ lsp (clangd)
 │       ├── java.lua              # java lsp (nvim-java)
+│       ├── python.lua            # python lsp + debugging
+│       ├── r.lua                 # R language server + styler
 │       ├── web.lua               # typescript/javascript/html/css
 │       ├── angular.lua           # angular specific
 │       ├── easy-dotnet.lua       # build/run
-│       ├── neotest.lua           # testing
+│       ├── neotest.lua           # testing (python + .NET)
 │       ├── mssql.lua             # mssql connection
 │       ├── sql.lua               # dadbod ui
 │       ├── mason.lua             # language servers
@@ -522,7 +592,7 @@ S              # flash backward
 │       ├── harpoon.lua           # file jumping
 │       ├── rename.lua            # rename refactoring
 │       ├── lightbulb.lua         # code actions
-│       ├── api.lua               # rest client
+│       ├── api.lua               # rest client (kulala)
 │       ├── todo.lua              # todo comments
 │       ├── toggleterm.lua        # terminal
 │       ├── trouble.lua           # diagnostics
@@ -531,14 +601,16 @@ S              # flash backward
 │       └── orcatheme.lua         # theme colors
 └── colors/
     └── orcatheme.lua             # color scheme
-
 ```
 
 **the important ones:**
 
 * `lua/config/keymaps.lua` - all your shortcuts
+* `lua/config/options.lua` - general vim settings
 * `lua/plugins/dap.lua` - debugging configuration
 * `lua/plugins/roslyn.lua` - c# configuration
+* `lua/plugins/python.lua` - python configuration
+* `lua/plugins/r.lua` - R configuration
 * `lua/plugins/java.lua` - java configuration
 * `lua/plugins/easy-dotnet.lua` - build/run setup
 * `lua/plugins/web.lua` - typescript/angular/html/css
@@ -554,21 +626,60 @@ S              # flash backward
 2. create `lua/plugins/<language>.lua` with lsp config
 3. restart neovim
 
+example for go:
+```lua
+-- lua/plugins/go.lua
+return {
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed, { "go" })
+    end,
+  },
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        gopls = {},
+      },
+    },
+  },
+}
+```
+
 ### change keybindings
 
 1. edit `lua/config/keymaps.lua`
 2. follow the `<leader>X*` pattern so nothing conflicts
 3. restart neovim
 
+```lua
+-- example: add a keybind for running go tests
+vim.keymap.set("n", "<leader>gt", ":!go test ./...<CR>", { desc = "Run Go Tests" })
+```
+
 ### project-specific settings
 
 1. create `.nvim.lua` in your project root
 2. add your settings there (lazyvim auto-loads it)
 
+```lua
+-- .nvim.lua in your project
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+```
+
 ### customize the theme
 
 1. edit `colors/orcatheme.lua`
 2. restart neovim
+
+### disable inlay hints (if they annoy you)
+
+edit `lua/config/options.lua`:
+```lua
+vim.lsp.inlay_hint.enable(false)
+```
 
 ---
 
@@ -581,6 +692,8 @@ S              # flash backward
 # or whatever language you need
 # then try opening a file again
 
+# check lsp status
+:LspInfo
 ```
 
 ### formatter not working
@@ -590,31 +703,103 @@ S              # flash backward
 :MasonInstall csharpier
 :MasonInstall stylua
 
+# check if formatting is enabled
+:FormatInfo
+```
+
+### python tools not working
+
+```bash
+# install python formatters
+pip install black isort
+
+# install debugpy
+:MasonInstall debugpy
+
+# check python lsp
+:LspInfo
+```
+
+### R language server not working
+
+```bash
+# in R console:
+install.packages("languageserver")
+install.packages("styler")
+
+# then restart neovim
+# check if it's running
+:LspInfo
 ```
 
 ### tests not running
 
 ```bash
-# make sure you have [Fact] or [Test] attributes
+# make sure you have [Fact] or [Test] attributes for .NET
+# or pytest markers for python
 :MasonInstall neotest-dotnet
+:MasonInstall neotest-python
 
+# check neotest status
+:Neotest summary
 ```
 
 ### debugging not working
 
 ```bash
+# for .NET
 dotnet build
 :MasonInstall netcoredbg
+
+# for python
+:MasonInstall debugpy
+
 # set breakpoint: <leader>db
 # start debug: <leader>dc
 
+# check dap status
+:DapShowLog
 ```
 
-### check startup time
+### inlay hints not showing
 
 ```bash
+# make sure your lsp supports it
+:LspInfo
+
+# toggle inlay hints
+:lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+```
+
+### sql connection not working
+
+```bash
+# check env variables are set
+echo $MSSQL_USER
+echo $MSSQL_PASSWORD
+
+# try connecting manually first
+:DBUI
+
+# if still failing, check lua/plugins/sql.lua
+```
+
+### startup is slow
+
+```bash
+# profile startup time
 :StartupTime
 
+# check which plugins are slow
+:Lazy profile
+
+# consider lazy-loading heavy plugins
+```
+
+### check overall health
+
+```bash
+:checkhealth
 ```
 
 ---
@@ -625,29 +810,79 @@ dotnet build
 :MasonInstall         # manage language servers
 :MasonUpdate          # update all servers
 :Lazy                 # plugin manager
+:Lazy sync            # update all plugins
 :LspInfo              # see lsp status
+:LspRestart           # restart lsp server
 :checkhealth          # overall health check
 :Telescope keymaps    # view all keybindings
-
+:FormatInfo           # see formatters for current buffer
+:DapShowLog           # see debug adapter logs
+:Neotest summary      # see test results
 ```
 
 ---
 
 ## language support
 
-| language | lsp | formatter | debugger |
-| --- | --- | --- | --- |
-| c# | roslyn | csharpier | netcoredbg ✅ |
-| c/c++ | clangd | clang-format | codelldb ✅ |
-| java | jdtls | - | java-debug ✅ |
-| typescript | vtsls | prettier | builtin ✅ |
-| javascript | vtsls | prettier | builtin ✅ |
-| angular | angularls | prettier | builtin ✅ |
-| html | html-lsp | prettier | - ✅ |
-| css/scss | cssls | prettier | - ✅ |
-| lua | lua-lsp | stylua | - ✅ |
-| python | python-lsp | black | - ✅ |
-| sql | - | - | dadbod ui ✅ |
-| yaml | yaml-lsp | - | - ✅ |
-| docker | docker-lsp | - | - ✅ |
-| powershell | pwsh-lsp | - | - ✅ |
+| language | lsp | formatter | debugger | notes |
+| --- | --- | --- | --- | --- |
+| c# | roslyn | csharpier | netcoredbg ✅ | full .net support |
+| c/c++ | clangd | clang-format | codelldb ✅ | systems programming ready |
+| java | jdtls | - | java-debug ✅ | eclipse-grade support |
+| python | pylsp + pyright | black + isort | debugpy ✅ | pytest integration |
+| R | r_language_server | styler | - ✅ | tidyverse formatting |
+| typescript | vtsls | prettier | builtin ✅ | smart inlay hints |
+| javascript | vtsls | prettier | builtin ✅ | same as typescript |
+| angular | angularls | prettier | builtin ✅ | component switching |
+| html | html-lsp | prettier | - ✅ | auto-closing tags |
+| css/scss | cssls | prettier | - ✅ | tailwind support |
+| lua | lua-lsp | stylua | - ✅ | neovim api support |
+| sql | - | - | dadbod ui ✅ | mssql ready |
+| yaml | yaml-lsp | - | - ✅ | |
+| docker | docker-lsp | - | - ✅ | dockerfile support |
+| powershell | pwsh-lsp | - | - ✅ | |
+
+---
+
+## tips & tricks
+
+**performance**
+- first startup is slow (installing plugins), after that it's instant
+- harpoon is way faster than telescope for files you use constantly
+- flash (`s`) is the fastest way to jump around - learn it
+
+**debugging**
+- set conditional breakpoints: `<leader>db` then edit condition in dap ui
+- use the repl (`<leader>dm`) to test expressions while paused
+- dap virtual text shows variable values inline - super useful
+
+**formatting**
+- formatting happens on save for most languages
+- if you don't like auto-format, disable it in options.lua
+- for R, styler follows tidyverse style by default
+
+**git**
+- lazygit (`<leader>gg`) is way faster than cli for complex operations
+- use `<leader>hp` to preview changes before staging
+- `<leader>hb` shows git blame inline - great for "who wrote this?"
+
+**testing**
+- neotest shows results inline with ✅ and ❌
+- `<leader>to` for detailed output
+- debugging tests (`<leader>ts`) is incredibly powerful
+
+**refactoring**
+- avante.nvim can suggest refactorings
+- `<leader>cf` shows all available code actions
+- `<leader>rn` renames across entire project
+
+**sql**
+- set env vars once, connect everywhere
+- results show in nice tables
+- can save queries as .sql files
+
+**workflow**
+- use harpoon for 3-4 main files
+- use telescope for everything else
+- use flash for quick jumps on screen
+- use aerial to navigate large files
