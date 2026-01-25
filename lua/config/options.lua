@@ -17,7 +17,7 @@ vim.o.signcolumn = "yes"
 vim.o.wrap = false
 
 -- Performance Optimizations
-vim.o.updatetime = 200 -- Faster swap file and diagnostic updates
+vim.o.updatetime = 500
 vim.o.timeoutlen = 300 -- Faster keymap timeout
 
 -- LSP and Diagnostics
