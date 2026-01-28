@@ -97,6 +97,11 @@ return {
             winhighlight = "Normal:Pmenu,FloatBorder:Pmenu",
           },
         },
+        notify = {
+          backend = "notify",
+          relative = "editor",
+          zindex = 100,
+        },
       },
     },
   },
