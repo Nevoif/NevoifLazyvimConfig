@@ -43,7 +43,6 @@ return {
             opts.formatters_by_ft.lua = { "stylua" }
             opts.formatters_by_ft.sh = { "shfmt" }
             opts.formatters_by_ft.bash = { "shfmt" }
-            opts.formatters_by_ft.python = { "black" }
             -- ========================================
             -- Formatter Configurations
             -- ========================================
@@ -60,15 +59,6 @@ return {
             }
             opts.formatters.sqlfluff = {
                 args = { "format", "--dialect=postgres", "-" },
-            }
-            -- ========================================
-            -- Python Formatters
-            -- ========================================
-            opts.formatters.black = {
-                args = { "--line-length", "88", "-" },
-            }
-            opts.formatters.isort = {
-                args = { "--profile", "black", "-" },
             }
         end,
     },
