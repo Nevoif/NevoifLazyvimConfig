@@ -52,7 +52,6 @@ return {
             "lua-language-server",
             "stylua",
             "python-lsp-server",
-            "black",
             "isort",
             "debugpy",
             "marksman",
