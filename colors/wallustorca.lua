@@ -125,6 +125,12 @@ function theme.setup()
     vim.api.nvim_set_hl(0, "TelescopePromptTitle", { bg = c.accent, fg = c.bg })
     vim.api.nvim_set_hl(0, "TelescopeSelection", { bg = c.light_bg, fg = c.accent, bold = true })
 
+    -- rainbow brackets!
+    vim.api.nvim_set_hl(0, "MyRainbow1", { fg = c.blue })
+    vim.api.nvim_set_hl(0, "MyRainbow2", { fg = c.yellow })
+    vim.api.nvim_set_hl(0, "MyRainbow3", { fg = c.red })
+    vim.api.nvim_set_hl(0, "MyRainbow4", { fg = c.purple })
+
     -- Indent-blankline
     vim.api.nvim_set_hl(0, "IblIndent", { fg = c.dark_bg, nocombine = true })
     vim.api.nvim_set_hl(0, "IblScope", { fg = c.light_bg, nocombine = true })
