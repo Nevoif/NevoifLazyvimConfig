@@ -162,16 +162,6 @@ brew install node              # macos
 
 **if you're doing sql work**
 
-```bash
-# add to ~/.zshrc or ~/.bashrc
-export MSSQL_USER="sa"
-export MSSQL_PASSWORD="your_password_here"
-
-# then: source ~/.zshrc
-```
-
-**database setup - ready to go**
-
 you have two ways to configure databases:
 
 *option 1: local file (recommended for multiple databases)*
