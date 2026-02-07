@@ -1,5 +1,4 @@
 return {
-    -- 1. Dadbod UI & Core
     {
         "kristijanhusak/vim-dadbod-ui",
         dependencies = {
@@ -13,14 +12,10 @@ return {
 
             vim.g.dbs = {}
 
-            -- Try to load local connections first (gitignored, developer-specific)
-            -- This allows each developer to have their own database configurations
             local ok, local_dbs = pcall(require, "local.db_connections")
             if ok and local_dbs then
                 vim.g.dbs = local_dbs
             else
-                -- Fallback to environment variables
-                -- This is useful for CI/CD or simpler setups
                 local pg_user = os.getenv("POSTGRES_USER")
                 local pg_pass = os.getenv("POSTGRES_PASSWORD")
 
@@ -38,6 +33,23 @@ return {
             { "<leader>Dd", "<cmd>DBUIToggle<cr>", desc = "SQL: Toggle DB UI" },
             { "<leader>Dr", "<cmd>DB<cr>", desc = "SQL: Run Query", ft = { "sql", "mysql", "plsql" } },
             { "<leader>Da", "<cmd>DBUIAddConnection<cr>", desc = "SQL: Add Connection" },
+        },
+    },
+    {
+        "neovim/nvim-lspconfig",
+        optional = true,
+        opts = {
+            servers = {
+                sqlls = {
+                    settings = {
+                        sqlls = {
+                            defaultDatabase = "postgres",
+                            connections = {},
+                            dialect = "postgres",
+                        },
+                    },
+                },
+            },
         },
     },
     {
