@@ -170,6 +170,48 @@ export MSSQL_PASSWORD="your_password_here"
 # then: source ~/.zshrc
 ```
 
+**database setup - ready to go**
+
+you have two ways to configure databases:
+
+*option 1: local file (recommended for multiple databases)*
+
+create `lua/local/db_connections.lua`:
+
+```lua
+return {
+  ["PostgreSQL: Dev"] = "postgresql://user:password@localhost:5432/dev_db",
+  ["PostgreSQL: Prod"] = "postgresql://user:password@localhost:5432/prod_db",
+  ["MySQL: Local"] = "mysql://user:password@localhost:3306/mydb",
+  ["MSSQL: Docker"] = "sqlserver://sa:YourPassword@localhost:1433/master",
+}
+```
+
+then just open neovim and `<leader>Dd` will show all your connections ready to query.
+
+*option 2: environment variables (simple single database)*
+
+```bash
+# postgres
+export POSTGRES_USER="your_user"
+export POSTGRES_PASSWORD="your_password"
+
+# mssql (uses sa account)
+export MSSQL_USER="sa"
+export MSSQL_PASSWORD="your_password"
+```
+
+the plugin will automatically create default connections for these. if you want custom databases, use option 1.
+
+**connection string formats** (for local/db_connections.lua)
+
+```
+PostgreSQL: postgresql://user:password@host:5432/database
+MySQL:      mysql://user:password@host:3306/database
+MSSQL:      sqlserver://user:password@host:1433/database
+SQLite:     sqlite:///path/to/file.db
+```
+
 ---
 
 ## setup
