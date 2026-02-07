@@ -1,7 +1,4 @@
 return {
-  -- ================================
-  -- Angular Support
-  -- ================================
   {
     "neovim/nvim-lspconfig",
     ft = { "typescript", "javascript", "typescriptreact", "javascriptreact" },
@@ -16,15 +13,6 @@ return {
     },
   },
 
-  -- Auto-close tags for templates
-  {
-    "windwp/nvim-ts-autotag",
-    lazy = true,
-    ft = { "html", "xml", "jsx", "tsx", "javascript", "typescript", "typescriptreact" },
-    opts = {},
-  },
-
-  -- Treesitter support for Angular templates
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
@@ -37,11 +25,6 @@ return {
         })
       end
     end,
-  },
-
-  -- Toggle between component .ts and .html
-  {
-    "neovim/nvim-treesitter",
     keys = {
       {
         "<leader>cy",

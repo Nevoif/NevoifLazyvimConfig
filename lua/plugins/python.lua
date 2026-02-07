@@ -4,12 +4,11 @@ return {
         "neovim/nvim-lspconfig",
         opts = {
             servers = {
-                -- BasedPyright
                 basedpyright = {
                     settings = {
                         basedpyright = {
                             analysis = {
-                                typeCheckingMode = "standard", -- Change to "basic" if too noisy, or "strict" for max power
+                                typeCheckingMode = "standard",
                                 autoSearchPaths = true,
                                 useLibraryCodeForTypes = true,
                                 diagnosticMode = "openFilesOnly",
@@ -17,7 +16,6 @@ return {
                         },
                     },
                 },
-                -- Ruff: Blazing fast linter & formatter (Replaces flake8, isort, black, pylint)
                 ruff = {
                     cmd_env = { RUFF_TRACE = "messages" },
                     init_options = {
@@ -45,7 +43,7 @@ return {
         },
     },
 
-    -- 2. Formatting: Use Ruff to format (it's instant)
+    -- 2. Formatting: Use Ruff to format
     {
         "stevearc/conform.nvim",
         opts = {
@@ -120,11 +118,10 @@ return {
         config = function()
             local dap = require("dap")
 
-            -- Setup Python adapter using debugpy
             if not dap.adapters["python"] then
                 dap.adapters["python"] = {
                     type = "executable",
-                    command = vim.fn.exepath("python"), -- Uses current env python
+                    command = vim.fn.exepath("python"),
                     args = { "-m", "debugpy.adapter" },
                 }
             end
@@ -135,7 +132,6 @@ return {
                     name = "Launch file",
                     request = "launch",
                     program = "${file}",
-                    -- Intelligent pythonPath detection for virtual environments
                     pythonPath = function()
                         local venv = os.getenv("VIRTUAL_ENV")
                         if venv then
@@ -173,8 +169,8 @@ return {
     -- 5. Virtual Environment Selector
     {
         "linux-cultist/venv-selector.nvim",
+        ft = { "python" },
         dependencies = { "neovim/nvim-lspconfig", "mfussenegger/nvim-dap", "mfussenegger/nvim-dap-python" },
-        lazy = false,
         opts = {
             auto_refresh = true,
             fd_binary_name = "fd",

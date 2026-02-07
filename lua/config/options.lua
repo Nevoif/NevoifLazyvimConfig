@@ -18,7 +18,7 @@ vim.o.wrap = false
 
 -- Performance Optimizations
 vim.o.updatetime = 500
-vim.o.timeoutlen = 300 -- Faster keymap timeout
+vim.o.timeoutlen = 300
 
 -- LSP and Diagnostics
 vim.diagnostic.config({
@@ -37,7 +37,7 @@ vim.diagnostic.config({
     },
 })
 
--- Fix for C# / Python / Java (Force 4 spaces)
+-- Fix for C# / Python / Java / Rust (Force 4 spaces)
 vim.api.nvim_create_autocmd("FileType", {
     pattern = { "cs", "python", "java", "rust" },
     callback = function()
@@ -46,6 +46,3 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.opt_local.softtabstop = 4
     end,
 })
-
--- LSP timeout tweak (Roslyn needs more time)
-vim.g.lsp_log_verbose = false

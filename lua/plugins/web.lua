@@ -1,28 +1,30 @@
 return {
-  -- ================================
-  -- Web Development Support
-  -- ================================
-
-  -- Auto-close tags in HTML/Vue/JSX
   {
     "windwp/nvim-ts-autotag",
     ft = { "html", "xml", "jsx", "tsx", "javascript", "typescript", "typescriptreact", "vue" },
-    opts = {},
+    lazy = true,
+    opts = {
+      enable_close = true,
+      enable_rename = true,
+      enable_close_on_slash = false,
+    },
   },
 
-  -- Linters for web
   {
     "mfussenegger/nvim-lint",
     ft = { "html", "css", "javascript", "typescript", "json", "jsonc" },
     opts = {
       linters_by_ft = {
         html = { "htmlhint" },
-        dockerfile = { "hadolint" },
+        css = { "stylelint" },
+        javascript = { "eslint_d" },
+        typescript = { "eslint_d" },
+        json = { "jsonlint" },
+        jsonc = { "jsonlint" },
       },
     },
   },
 
-  -- LSP servers for web development
   {
     "neovim/nvim-lspconfig",
     opts = {

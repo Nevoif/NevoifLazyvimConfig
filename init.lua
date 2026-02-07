@@ -2,8 +2,7 @@
 require("config.lazy")
 -- force disable inlay hints globally
 vim.lsp.inlay_hint.enable(false)
---require("config.csharp") not anymore i changed it lol
---
+
 -- this is already default in nvim 0.10+, but forcing it ensures consistency
 vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(args)

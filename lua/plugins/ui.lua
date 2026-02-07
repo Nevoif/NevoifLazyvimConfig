@@ -1,5 +1,4 @@
 return {
-    --rainbow yeey
     {
         "HiPhish/rainbow-delimiters.nvim",
         opts = {
@@ -15,31 +14,13 @@ return {
         end,
     },
 
-    -- modicator: change line number color based on mode which is cute
     {
         "mawkler/modicator.nvim",
         opts = {
-            show_warnings = false, -- clean output
+            show_warnings = false,
         },
     },
 
-    -- satellite: scrollbar with diagnostics git and warning stuff
-    --{
-    --"lewis6991/satellite.nvim",
-    --opts = {
-    --current_only = true, -- only show on active window
-    --winblend = 10,       -- transparency
-    --handlers = {
-    --cursor = { enabled = true },
-    --search = { enabled = true },     -- show search results in scrollbar
-    --diagnostic = { enabled = true }, -- show errors in scrollbar
-    --gitsigns = { enabled = false },  -- show git changes in scrollbar
-    --marks = { enabled = false },
-    --},
-    --},
-    --},
-
-    -- colorizer: show color codes with their actual color more front end thing
     {
         "NvChad/nvim-colorizer.lua",
         lazy = true,
@@ -54,7 +35,6 @@ return {
         },
     },
 
-    -- This tells LazyVim's internal LSP system to keep hints OFF by default
     {
         "neovim/nvim-lspconfig",
         opts = {
@@ -62,7 +42,6 @@ return {
         },
     },
 
-    -- floating filename badges
     {
         "b0o/incline.nvim",
         event = "VeryLazy",
@@ -76,17 +55,15 @@ return {
                     local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
                     local ft_icon, ft_color = require("nvim-web-devicons").get_icon_color(filename)
                     local modified = vim.bo[props.buf].modified
-
-                    -- Select the highlight group defined in orcatheme.lua
                     local hl_group = modified and "InclineModified" or "InclineNormal"
 
                     return {
                         { " " },
-                        { ft_icon, guifg = ft_color }, -- Keep icon color natural
+                        { ft_icon, guifg = ft_color },
                         { " " },
                         { filename },
                         { " " },
-                        group = hl_group, -- Apply the theme color here
+                        group = hl_group,
                     }
                 end,
             })

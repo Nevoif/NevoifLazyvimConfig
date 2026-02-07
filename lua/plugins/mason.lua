@@ -51,11 +51,12 @@ return {
             -- ========================================
             "lua-language-server",
             "stylua",
-            "python-lsp-server",
-            "isort",
+            "basedpyright", -- Python type checker
+            "ruff", -- Python linter/formatter
             "debugpy",
             "marksman",
             "markdownlint-cli2",
+            "markdown-toc",
 
             -- ========================================
             -- Build & Development Tools
@@ -67,9 +68,8 @@ return {
             "powershell-editor-services",
 
             -- ========================================
-            -- -- SQL stuff
+            -- SQL & Data
             -- ========================================
-            --
             "sqlls",
             "sqlfluff",
         },

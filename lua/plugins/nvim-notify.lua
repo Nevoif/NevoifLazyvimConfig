@@ -2,6 +2,7 @@ return {
     {
         "rcarriga/nvim-notify",
         lazy = true,
+        event = "VeryLazy",
         opts = {
             position = "top_right",
             timeout = 2500,

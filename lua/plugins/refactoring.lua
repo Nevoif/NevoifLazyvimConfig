@@ -1,5 +1,6 @@
 return {
     "ThePrimeagen/refactoring.nvim",
+    lazy = true,
     dependencies = {
         "nvim-lua/plenary.nvim",
         "nvim-treesitter/nvim-treesitter",
@@ -14,5 +15,7 @@ return {
             desc = "Refactor",
         },
     },
-    opts = {},
+    opts = {
+        print_var_statements = true,
+    },
 }
