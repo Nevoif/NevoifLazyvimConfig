@@ -2,6 +2,8 @@
 
 hello! this is my neovim setup. it's a full ide for c#/.net, web development, python, R/data analysis, sql, and basically whatever i need to use rn or later. works great on linux and windows, i saw people having issues with formattings and stuff on macos so there is that!
 
+yes it is bloated, yes it has languages i'll use rarely maybe never, no i won't make it lighter
+
 ## what's in here
 
 **coding stuff**
