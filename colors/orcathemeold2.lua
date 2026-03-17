@@ -20,7 +20,7 @@ function theme.setup()
   local c = theme.colors
   vim.cmd("hi clear")
   vim.o.background = "dark"
-  vim.g.colors_name = "orcatheme"
+  vim.g.colors_name = "orcatheme2025"
 
   -- Core UI
   vim.api.nvim_set_hl(0, "Normal", { fg = c.fg, bg = c.bg })
@@ -50,7 +50,7 @@ function theme.setup()
   vim.api.nvim_set_hl(0, "StatusLineTerm", { fg = "#F8F8F2", bg = "#303136" })
   vim.api.nvim_set_hl(0, "StatusLineTermNC", { fg = "#b0b0b0", bg = "#303136" })
 
-  -- Extensions (Autocomplete menu)
+  -- Extensions
   vim.api.nvim_set_hl(0, "Pmenu", { bg = "#1a1f2f", fg = "#d0d0d0", bold = false })
   vim.api.nvim_set_hl(0, "PmenuSel", { bg = c.lightblue, fg = "#ffffff", bold = true })
   vim.api.nvim_set_hl(0, "PmenuSbar", { bg = "#0f1419" })

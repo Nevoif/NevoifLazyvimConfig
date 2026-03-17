@@ -94,7 +94,7 @@ return {
                         bottom_right = "┘",
                     },
                     win_options = {
-                        winhighlight = "Normal:Pmenu,FloatBorder:Pmenu",
+                        winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,PmenuSel:PmenuSel",
                     },
                 },
                 notify = {
