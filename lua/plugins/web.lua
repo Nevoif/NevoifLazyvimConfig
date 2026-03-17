@@ -16,7 +16,7 @@ return {
 
   {
     "mfussenegger/nvim-lint",
-    ft = { "html", "css", "javascript", "typescript", "json", "jsonc" },
+    ft = { "html", "css", "javascript", "typescript", "json", "jsonc", "c", "cpp", "h", "hpp" },
     opts = {
       linters_by_ft = {
         html = { "htmlhint" },
@@ -25,6 +25,10 @@ return {
         typescript = { "eslint_d" },
         json = { "jsonlint" },
         jsonc = { "jsonlint" },
+        c = { "cpplint" },
+        cpp = { "cpplint" },
+        h = { "cpplint" },
+        hpp = { "cpplint" },
       },
     },
   },

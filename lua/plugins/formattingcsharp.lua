@@ -44,8 +44,17 @@ return {
             opts.formatters_by_ft.sh = { "shfmt" }
             opts.formatters_by_ft.bash = { "shfmt" }
 
+            -- C/C++ Formatting
+            opts.formatters_by_ft.c = { "clang_format" }
+            opts.formatters_by_ft.cpp = { "clang_format" }
+            opts.formatters_by_ft.h = { "clang_format" }
+            opts.formatters_by_ft.hpp = { "clang_format" }
+
             -- Formatter Configurations
             opts.formatters = opts.formatters or {}
+            opts.formatters.clang_format = {
+                prepend_args = { "--style=file" },
+            }
             opts.formatters.csharpier = {
                 command = "dotnet-csharpier",
                 args = { "--write-stdout" },

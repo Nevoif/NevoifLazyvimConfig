@@ -106,6 +106,125 @@ return {
         },
       })
 
+      -- ========================================
+      -- C/C++ Build Templates
+      -- ========================================
+      require("overseer").register_template({
+        name = "c/c++: cmake build",
+        builder = function()
+          return {
+            cmd = "bash",
+            args = { "-c", "mkdir -p build && cd build && cmake .. && make" },
+            cwd = vim.fn.getcwd(),
+            components = { "on_output_summarize", "on_exit_set_status" },
+          }
+        end,
+        condition = {
+          filetype = { "c", "cpp", "h", "hpp" },
+          callback = function(search)
+            return vim.fn.glob(search.dir .. "/CMakeLists.txt") ~= ""
+          end,
+        },
+      })
+
+      require("overseer").register_template({
+        name = "c/c++: cmake build (debug)",
+        builder = function()
+          return {
+            cmd = "bash",
+            args = { "-c", "mkdir -p build_debug && cd build_debug && cmake -DCMAKE_BUILD_TYPE=Debug .. && make" },
+            cwd = vim.fn.getcwd(),
+            components = { "on_output_summarize", "on_exit_set_status" },
+          }
+        end,
+        condition = {
+          filetype = { "c", "cpp", "h", "hpp" },
+          callback = function(search)
+            return vim.fn.glob(search.dir .. "/CMakeLists.txt") ~= ""
+          end,
+        },
+      })
+
+      require("overseer").register_template({
+        name = "c/c++: make",
+        builder = function()
+          return {
+            cmd = "make",
+            components = { "on_output_summarize", "on_exit_set_status" },
+          }
+        end,
+        condition = {
+          filetype = { "c", "cpp", "h", "hpp" },
+          callback = function(search)
+            return vim.fn.glob(search.dir .. "/Makefile") ~= "" or vim.fn.glob(search.dir .. "/makefile") ~= ""
+          end,
+        },
+      })
+
+      require("overseer").register_template({
+        name = "c/c++: compile single file (gcc)",
+        builder = function()
+          local filename = vim.fn.expand("%:t:r")
+          return {
+            cmd = "gcc",
+            args = { "-g", "-o", filename, vim.fn.expand("%") },
+            cwd = vim.fn.getcwd(),
+            components = { "on_output_summarize", "on_exit_set_status" },
+          }
+        end,
+        condition = {
+          filetype = { "c" },
+        },
+      })
+
+      require("overseer").register_template({
+        name = "c/c++: compile single file (g++)",
+        builder = function()
+          local filename = vim.fn.expand("%:t:r")
+          return {
+            cmd = "g++",
+            args = { "-g", "-std=c++17", "-o", filename, vim.fn.expand("%") },
+            cwd = vim.fn.getcwd(),
+            components = { "on_output_summarize", "on_exit_set_status" },
+          }
+        end,
+        condition = {
+          filetype = { "cpp", "h", "hpp" },
+        },
+      })
+
+      require("overseer").register_template({
+        name = "c/c++: compile and run (gcc)",
+        builder = function()
+          local filename = vim.fn.expand("%:t:r")
+          return {
+            cmd = "bash",
+            args = { "-c", string.format("gcc -g -o %s %s && ./%s", filename, vim.fn.expand("%"), filename) },
+            cwd = vim.fn.getcwd(),
+            components = { "on_output_summarize", "on_exit_set_status" },
+          }
+        end,
+        condition = {
+          filetype = { "c" },
+        },
+      })
+
+      require("overseer").register_template({
+        name = "c/c++: compile and run (g++)",
+        builder = function()
+          local filename = vim.fn.expand("%:t:r")
+          return {
+            cmd = "bash",
+            args = { "-c", string.format("g++ -g -std=c++17 -o %s %s && ./%s", filename, vim.fn.expand("%"), filename) },
+            cwd = vim.fn.getcwd(),
+            components = { "on_output_summarize", "on_exit_set_status" },
+          }
+        end,
+        condition = {
+          filetype = { "cpp", "h", "hpp" },
+        },
+      })
+
       require("overseer").register_template({
         name = "postgres: psql interactive",
         builder = function()

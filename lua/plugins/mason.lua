@@ -16,11 +16,17 @@ return {
             "csharpier", -- C# Formatter
 
             -- ========================================
-            -- University Essentials (C++ & Java)
+            -- C/C++ Development (Computer Engineering)
             -- ========================================
             "clangd", -- C/C++ LSP
-            "codelldb", -- C/C++ Debugger
             "clang-format", -- C/C++ Formatter
+            "codelldb", -- C/C++ Debugger
+            "cmake-language-server", -- CMake LSP
+            "cpplint", -- C/C++ Linter
+
+            -- ========================================
+            -- University Essentials (Java)
+            -- ========================================
             "jdtls", -- Java LSP
             "java-debug-adapter", -- Java Debugger (Required for nvim-java)
             "java-test", -- Java Test Runner (Required for nvim-java)
