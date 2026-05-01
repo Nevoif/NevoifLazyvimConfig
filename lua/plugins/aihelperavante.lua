@@ -1,7 +1,7 @@
 return {
     "yetone/avante.nvim",
     event = "VeryLazy",
-    lazy = true,
+    lazy = false,
     cmd = { "AvanteChat", "AvanteToggle", "AvanteAsk" },
     version = false,
     opts = {
