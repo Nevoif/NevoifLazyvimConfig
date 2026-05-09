@@ -1,6 +1,6 @@
 # lazyvim config - complete guide
 
-hello! this is my bloatware neovim setup. it's a full ide for c#/.net, web development, python, R/data analysis, sql, and basically whatever i need to use rn or later. i get curious about some technologies or languages in general and try them out on my bloatware. works great on linux and windows, i saw people having issues with formattings and stuff on macos so there is that!
+hello! this is my bloatware neovim setup. it's a full ide for c#/.net. works great on linux and windows, i saw people having issues with formattings and stuff on macos so there is that!
 
 and yes it is bloated, yes it has languages i'll use rarely maybe never, no i won't make it lighter
 
@@ -8,44 +8,27 @@ and yes it is bloated, yes it has languages i'll use rarely maybe never, no i wo
 
 **coding stuff**
 - roslyn for c# (faster than omnisharp, way lighter)
-- clangd for c/c++ (standard systems programming setup)
-- jdtls via nvim-java for java (full eclipse-grade support)
-- vtsls for typescript/javascript with smart hints
-- angular language server with component templates
-- html, css, tailwind, emmet for web
-- pylsp + pyright for python (full python development)
-- r_language_server for R with styler formatting (data science ready)
-- lua, docker, yaml, bash, powershell
+- lua, docker, yaml, bash
 
 **debugging & testing**
 - full dap setup (breakpoints, step through, inspect variables, repl)
 - netcoredbg for .net debugging
-- codelldb for c/c++ debugging (fix those segfaults)
-- java debug adapter for java applications
-- debugpy for python debugging
 - dap virtual text (see variable values inline while debugging)
-- neotest for running unit tests with visual output (python + .NET support)
-- pytest integration for python
+- neotest for running unit tests with visual output (.NET support)
 
 **building & running**
 - easy-dotnet for build/run commands
 - kulala rest client (test your apis without postman)
 - toggleterm for quick terminal access
-- code_runner for python scripts
 - overseer for running tasks
 
 **formatting**
 - csharpier for c# (strict formatting, i like it)
-- clang-format for c/c++
-- black + isort for python
-- styler for R (tidyverse style formatting)
-- prettier for web (typescript, javascript, html, css, json, yaml)
 - stylua for lua
-- htmlhint and hadolint for checking your code
 
 **database & sql**
 - dadbod ui for sql queries
-- easy mssql connection with env variables
+- vim-dotenv for loading .env files (db credentials, api keys)
 - sql syntax highlighting
 - visual query results
 
@@ -58,14 +41,11 @@ and yes it is bloated, yes it has languages i'll use rarely maybe never, no i wo
 - rainbow brackets, satellite scrollbar, incline file badges
 
 **visual polish**
-- barbecue breadcrumb showing your exact code location (file > class > method)
 - indent guides with scope highlighting (see nested code structure instantly)
-- illuminate auto-highlighting all word matches under cursor
 - treesitter context sticky header (never lose track in big files)
 - flash jump (press 's' to jump anywhere on screen with 2 chars - feels like vscode)
 - smooth scrolling animations (ctrl+u/d feels premium)
 - deadcolumn at 120 chars (visual code quality guide, pep8 vibes)
-- better floating window styling with rounded borders
 - fidget for subtle lsp progress spinner (no annoying notifications)
 - improved inlay hints (see types and parameter names inline)
 
@@ -76,11 +56,8 @@ and yes it is bloated, yes it has languages i'll use rarely maybe never, no i wo
 - enhanced hunk preview, staging, and inline diffs
 
 **smart refactoring & code intelligence**
-- avante.nvim for ai-powered refactoring
-- package-info.nvim for checking outdated dependencies in package.json
 - incremental rename across your whole project
 - code action lightbulb
-- auto-closing tags for html/jsx
 
 **extras**
 - todo comment highlighting
@@ -88,7 +65,6 @@ and yes it is bloated, yes it has languages i'll use rarely maybe never, no i wo
 - luasnip for code snippets
 - mini.surround for manipulating quotes/brackets
 - persistence for session management (restore buffers)
-- noice for better messages and notifications
 
 ---
 
@@ -108,34 +84,8 @@ brew install ripgrep fd
 # .net sdk 6.0+
 ```
 
-**java & c++ essentials**
 
-```bash
-# java development kit (required for jdtls)
-sudo pacman -S jdk-openjdk    # arch
-brew install openjdk          # macos
 
-# c++ compiler
-sudo pacman -S gcc            # arch
-```
-
-**python setup**
-```bash
-# python 3.8+ (usually pre-installed)
-# pip for installing formatters
-pip install black isort
-```
-
-**R setup (for data analysis)**
-```bash
-# install R
-brew install r                # macos
-sudo pacman -S r              # arch
-
-# in R console, install language server and formatter:
-install.packages("languageserver")
-install.packages("styler")
-```
 
 **global tools**
 
@@ -158,8 +108,6 @@ yay -S netcoredbg              # arch
 # roslyn (c# language server)
 # mason will install this automatically
 
-# node.js for web tools
-brew install node              # macos
 ```
 
 **if you're doing sql work**
@@ -175,7 +123,6 @@ return {
   ["PostgreSQL: Dev"] = "postgresql://user:password@localhost:5432/dev_db",
   ["PostgreSQL: Prod"] = "postgresql://user:password@localhost:5432/prod_db",
   ["MySQL: Local"] = "mysql://user:password@localhost:3306/mydb",
-  ["MSSQL: Docker"] = "sqlserver://sa:YourPassword@localhost:1433/master",
 }
 ```
 
@@ -188,9 +135,6 @@ then just open neovim and `<leader>Dd` will show all your connections ready to q
 export POSTGRES_USER="your_user"
 export POSTGRES_PASSWORD="your_password"
 
-# mssql (uses sa account)
-export MSSQL_USER="sa"
-export MSSQL_PASSWORD="your_password"
 ```
 
 the plugin will automatically create default connections for these. if you want custom databases, use option 1.
@@ -270,8 +214,7 @@ that's it. you're ready to code.
 | key | what it does |
 | --- | --- |
 | `<leader>cf` | roslyn code actions (fixes, refactors, suggestions) |
-| `<leader>cy` | angular: toggle .ts ↔ .html |
-| `<leader>rn` | rename symbol everywhere |
+| `<leader>rn` | incremental rename (see preview as you type) |
 | `<leader>ce` | toggle code structure sidebar |
 
 ### finding & jumping - `<leader>f` + flash
@@ -406,21 +349,6 @@ dotnet new webapp -n myapp && cd myapp && nvim
 # watch variables appear inline thanks to dap virtual text
 ```
 
-### python development
-
-```bash
-# create file
-touch script.py && nvim script.py
-
-# in neovim:
-# write your code
-<leader>db        # set breakpoint
-<leader>dc        # start debugging
-<leader>tn        # run pytest tests
-
-# formatting happens automatically on save
-# black for code, isort for imports
-```
 
 ### R / data analysis
 
@@ -443,47 +371,8 @@ gd             # go to definition
 
 **tip for R users**: styler will format your code to tidyverse style guide. if you prefer base R style, you can configure it in `lua/plugins/r.lua`
 
-### c++ / systems programming
 
-```bash
-# create file
-touch main.cpp && nvim main.cpp
 
-# in neovim:
-# write your code
-<leader>db        # set breakpoint
-<leader>dc        # compile (manual) & launch debugger
-<leader>do        # step through
-# see variable values inline while debugging
-```
-
-### java project
-
-```bash
-# open any java project
-nvim src/Main.java
-
-# wait for jdtls to attach (coffee cup icon)
-<leader>dc        # start debugging automatically
-```
-
-### angular development
-
-```bash
-cd my-angular-app && nvim
-
-# toggle between typescript and html
-<leader>cy
-
-# format code
-:FormatWrite
-
-# run tests
-<leader>tn
-
-# check for outdated packages
-# package-info.nvim shows versions inline in package.json
-```
 
 ### unit testing
 
@@ -608,31 +497,33 @@ super useful in large files - see everything at a glance
 │   │   ├── lazy.lua              # plugin setup
 │   │   └── autocmds.lua          # auto commands
 │   └── plugins/                  # plugin configs (auto-loaded)
-│       ├── dap.lua               # core debugging (UI, C#, C++, Python)
+│       ├── dap.lua               # core debugging (UI, C#)
 │       ├── roslyn.lua            # c# lsp
-│       ├── cpp.lua               # c++ lsp (clangd)
-│       ├── java.lua              # java lsp (nvim-java)
-│       ├── python.lua            # python lsp + debugging
-│       ├── r.lua                 # R language server + styler
-│       ├── web.lua               # typescript/javascript/html/css
-│       ├── angular.lua           # angular specific
 │       ├── easy-dotnet.lua       # build/run
-│       ├── neotest.lua           # testing (python + .NET)
-│       ├── mssql.lua             # mssql connection
+│       ├── neotest.lua           # testing (.NET)
 │       ├── sql.lua               # dadbod ui
 │       ├── mason.lua             # language servers
 │       ├── formattingcsharp.lua  # formatters
-│       ├── ui.lua                # ui stuff
+│       ├── dotenv.lua            # .env file loading
 │       ├── harpoon.lua           # file jumping
-│       ├── rename.lua            # rename refactoring
-│       ├── lightbulb.lua         # code actions
+│       ├── rename.lua            # incremental rename
 │       ├── api.lua               # rest client (kulala)
 │       ├── todo.lua              # todo comments
 │       ├── toggleterm.lua        # terminal
 │       ├── trouble.lua           # diagnostics
-│       ├── noice.lua             # better messages
 │       ├── editor.lua            # neo-tree file explorer
-│       └── orcatheme.lua         # theme colors
+│       ├── flash.lua             # fast jump
+│       ├── telescope-config.lua  # fuzzy finding
+│       ├── refactoring.lua       # code refactoring
+│       ├── lightbulb.lua         # code actions
+│       ├── neotest.lua           # test running
+│       ├── overseer.lua          # task runner
+│       ├── persistence.lua       # session management
+│       ├── snacks.lua            # ui enhancements
+│       ├── luasnip.lua           # snippets
+│       ├── mini-surround.lua     # surround manipulation
+│       ├── orcatheme.lua         # theme colors
+│       └── which-key.lua         # keybinding help
 └── colors/
     └── orcatheme.lua             # color scheme
 ```
@@ -642,13 +533,11 @@ super useful in large files - see everything at a glance
 * `lua/config/keymaps.lua` - all your shortcuts
 * `lua/config/options.lua` - general vim settings
 * `lua/plugins/dap.lua` - debugging configuration
-* `lua/plugins/roslyn.lua` - c# configuration
-* `lua/plugins/python.lua` - python configuration
-* `lua/plugins/r.lua` - R configuration
-* `lua/plugins/java.lua` - java configuration
+* `lua/plugins/roslyn.lua` - c# configuration & roslyn settings
 * `lua/plugins/easy-dotnet.lua` - build/run setup
-* `lua/plugins/web.lua` - typescript/angular/html/css
-* `lua/plugins/neotest.lua` - test running
+* `lua/plugins/neotest.lua` - .NET test running
+* `lua/plugins/dotenv.lua` - environment variable loading
+* `lua/plugins/rename.lua` - incremental rename
 
 ---
 
@@ -741,30 +630,7 @@ vim.lsp.inlay_hint.enable(false)
 :FormatInfo
 ```
 
-### python tools not working
 
-```bash
-# install python formatters
-pip install black isort
-
-# install debugpy
-:MasonInstall debugpy
-
-# check python lsp
-:LspInfo
-```
-
-### R language server not working
-
-```bash
-# in R console:
-install.packages("languageserver")
-install.packages("styler")
-
-# then restart neovim
-# check if it's running
-:LspInfo
-```
 
 ### tests not running
 
@@ -785,8 +651,6 @@ install.packages("styler")
 dotnet build
 :MasonInstall netcoredbg
 
-# for python
-:MasonInstall debugpy
 
 # set breakpoint: <leader>db
 # start debug: <leader>dc
@@ -809,8 +673,7 @@ dotnet build
 
 ```bash
 # check env variables are set
-echo $MSSQL_USER
-echo $MSSQL_PASSWORD
+echo $POSTGRES_USER
 
 # try connecting manually first
 :DBUI
@@ -861,15 +724,6 @@ echo $MSSQL_PASSWORD
 | language | lsp | formatter | debugger | notes |
 | --- | --- | --- | --- | --- |
 | c# | roslyn | csharpier | netcoredbg ✅ | full .net support |
-| c/c++ | clangd | clang-format | codelldb ✅ | systems programming ready |
-| java | jdtls | - | java-debug ✅ | eclipse-grade support |
-| python | pylsp + pyright | black + isort | debugpy ✅ | pytest integration |
-| R | r_language_server | styler | - ✅ | tidyverse formatting |
-| typescript | vtsls | prettier | builtin ✅ | smart inlay hints |
-| javascript | vtsls | prettier | builtin ✅ | same as typescript |
-| angular | angularls | prettier | builtin ✅ | component switching |
-| html | html-lsp | prettier | - ✅ | auto-closing tags |
-| css/scss | cssls | prettier | - ✅ | tailwind support |
 | lua | lua-lsp | stylua | - ✅ | neovim api support |
 | sql | - | - | dadbod ui ✅ | mssql ready |
 | yaml | yaml-lsp | - | - ✅ | |

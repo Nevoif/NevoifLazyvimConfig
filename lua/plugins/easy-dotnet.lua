@@ -38,7 +38,7 @@ return {
                 local connection = vim.fn.input("Connection string: ")
                 local output_dir = vim.fn.input("Output directory (default: Models): ") or "Models"
                 if connection ~= "" then
-                    vim.fn.system("dotnet ef dbcontext scaffold \"" .. connection .. "\" Microsoft.EntityFrameworkCore.SqlServer -o " .. output_dir)
+                    vim.fn.system("dotnet ef dbcontext scaffold \"" .. connection .. "\" Npgsql.EntityFrameworkCore.PostgreSQL -o " .. output_dir)
                     vim.notify("DbContext scaffolded to " .. output_dir, vim.log.levels.INFO)
                 end
             end, { desc = "Scaffold DbContext from existing database" })

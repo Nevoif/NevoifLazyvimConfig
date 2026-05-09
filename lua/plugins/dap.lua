@@ -3,6 +3,7 @@ return {
     dependencies = {
         "rcarriga/nvim-dap-ui",
         "nvim-neotest/nvim-nio",
+        "theHamsta/nvim-dap-virtual-text", -- Required for inline variable values
         "mason-org/mason.nvim", -- Ensure Mason is ready
     },
     keys = {
@@ -68,8 +69,16 @@ return {
         local dap = require("dap")
         local ui = require("dapui")
 
-        -- 1. Setup UI
+        -- 1. Setup UI & Virtual Text
         ui.setup()
+        require("nvim-dap-virtual-text").setup({
+            enabled = true,
+            enabled_commands = true,
+            highlight_changed_variables = true,
+            highlight_new_as_changed = false,
+            show_stop_reason = true,
+            commented = false,
+        })
 
         -- Auto-open UI when debugging starts
         dap.listeners.before.attach.dapui_config = function()
@@ -101,37 +110,23 @@ return {
                     name = "Launch file",
                     request = "launch",
                     program = function()
-                        -- Auto-detect bin/Debug dll if possible, else prompt
-                        return vim.fn.input("Path to dll: ", vim.fn.getcwd() .. "/bin/Debug/", "file")
+                        -- Auto-detect bin/Debug dll using fd (or standard globbing) to prevent manual typing
+                        local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+                        local paths = vim.fn.glob(vim.fn.getcwd() .. "/bin/Debug/**/*.dll", false, true)
+                        if #paths == 0 then
+                            return vim.fn.input("Path to dll: ", vim.fn.getcwd() .. "/bin/Debug/", "file")
+                        end
+                        -- Try to find the dll that matches the project folder name (the executable)
+                        for _, path in ipairs(paths) do
+                            if path:match(project_name .. "%.dll$") then
+                                return path
+                            end
+                        end
+                        return paths[1] -- fallback
                     end,
                     cwd = "${workspaceFolder}",
                 },
             }
         end
-
-        -- 3. C++ Adapter Setup (CodeLLDB)
-        dap.adapters.codelldb = {
-            type = "server",
-            port = "${port}",
-            executable = {
-                -- Point to the Mason install path
-                command = vim.fn.stdpath("data") .. "/mason/bin/codelldb",
-                args = { "--port", "${port}" },
-            },
-        }
-        -- C++ Config
-        dap.configurations.cpp = {
-            {
-                name = "Launch file",
-                type = "codelldb",
-                request = "launch",
-                program = function()
-                    return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-                end,
-                cwd = "${workspaceFolder}",
-                stopOnEntry = false,
-            },
-        }
-        dap.configurations.c = dap.configurations.cpp
     end,
 }
