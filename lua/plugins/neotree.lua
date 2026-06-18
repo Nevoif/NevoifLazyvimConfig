@@ -3,6 +3,10 @@ return {
         "nvim-neo-tree/neo-tree.nvim",
         lazy = true,
         cmd = { "Neotree", "NeoTreeShowToggle" },
+        keys = {
+            { "<leader>e", "<cmd>Neotree toggle<CR>", desc = "Explorer: Neo-tree" },
+            { "<leader>E", "<cmd>Neotree toggle<CR>", desc = "Explorer: Neo-tree (capital)" },
+        },
         opts = {
             close_if_last_window = true,
             default_component_configs = {

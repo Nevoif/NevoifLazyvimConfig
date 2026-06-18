@@ -1,5 +1,6 @@
 -- Options are automatically loaded before lazy.nvim startup
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
+-- Add any additional options here
 
 -- Global IDE Settings (Default: 2 spaces for Web/Lua/JSON)
 vim.o.autoindent = true
@@ -22,27 +23,27 @@ vim.o.timeoutlen = 300
 
 -- LSP and Diagnostics
 vim.diagnostic.config({
-    signs = true,
-    underline = true,
-    update_in_insert = false,
-    severity_sort = true,
-    virtual_text = {
-        prefix = "●",
-        spacing = 4,
-    },
-    float = {
-        source = true,
-        border = "rounded",
-        focusable = true,
-    },
+  signs = true,
+  underline = true,
+  update_in_insert = false,
+  severity_sort = true,
+  virtual_text = {
+    prefix = "●",
+    spacing = 4,
+  },
+  float = {
+    source = true,
+    border = "rounded",
+    focusable = true,
+  },
 })
 
--- Fix for C# / Python / Java / Rust (Force 4 spaces)
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "cs", "python", "java", "rust" },
-    callback = function()
-        vim.opt_local.shiftwidth = 4
-        vim.opt_local.tabstop = 4
-        vim.opt_local.softtabstop = 4
-    end,
+  pattern = { "cs", "python", "java", "rust" },
+  callback = function()
+    vim.opt_local.shiftwidth = 4
+    vim.opt_local.tabstop = 4
+    vim.opt_local.softtabstop = 4
+  end,
 })
+

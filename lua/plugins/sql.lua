@@ -35,23 +35,7 @@ return {
             { "<leader>Da", "<cmd>DBUIAddConnection<cr>", desc = "SQL: Add Connection" },
         },
     },
-    {
-        "neovim/nvim-lspconfig",
-        optional = true,
-        opts = {
-            servers = {
-                sqlls = {
-                    settings = {
-                        sqlls = {
-                            defaultDatabase = "postgres",
-                            connections = {},
-                            dialect = "postgres",
-                        },
-                    },
-                },
-            },
-        },
-    },
+    -- lspconfig server entries removed to avoid auto-installing sqlls via Mason
     {
         "nvim-treesitter/nvim-treesitter",
         optional = true,
