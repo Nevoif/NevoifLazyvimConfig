@@ -1,6 +1,6 @@
 # lazyvim config - complete guide
 
-hello! this is my bloatware neovim setup. it's a full ide for c#/.net. works great on linux and windows, i saw people having issues with formattings and stuff on macos so there is that!
+hello! this is my bloatware neovim setup. it's a full ide for c#/.net and my schoolwork that would be c/c++. works great on linux and windows, i saw people having issues with formattings and stuff on macos so there is that!
 
 and yes it is bloated, yes it has languages i'll use rarely maybe never, no i won't make it lighter
 
@@ -8,6 +8,8 @@ and yes it is bloated, yes it has languages i'll use rarely maybe never, no i wo
 
 **coding stuff**
 - roslyn for c# (faster than omnisharp, way lighter)
+- clangd for C/C++ (completion, navigation, diagnostics, clang-tidy)
+- clang-format, CMake, and CodeLLDB support for C/C++ projects
 - lua, docker, yaml, bash
 
 **debugging & testing**
@@ -108,6 +110,10 @@ yay -S netcoredbg              # arch
 # roslyn (c# language server)
 # mason will install this automatically
 
+# C/C++ tools: clangd, clang-format, CMake, and a C/C++ compiler
+# Mason installs clangd, clang-format, and CodeLLDB automatically
+# install CMake separately, e.g. sudo pacman -S cmake ninja
+
 ```
 
 **if you're doing sql work**
@@ -198,6 +204,19 @@ that's it. you're ready to code.
 | `<leader>B` | build solution (errors in quickfix) |
 | `<leader>dr` | run project |
 | `<leader>ds` | manage user secrets |
+
+### C/C++ development
+
+open a CMake project containing `CMakeLists.txt` to activate CMake Tools. mason installs clangd, clang-format, and the CodeLLDB adapter.
+
+| key | what it does |
+| --- | --- |
+| `<leader>mb` | configure/build the CMake project |
+| `<leader>mr` | run the selected CMake target |
+| `<leader>md` | debug the selected CMake target |
+
+
+formatting uses clang-format. Add a `.clang-format` file to the project to control the style; otherwise clang-format's default style applies.
 
 ### testing - `<leader>t`
 

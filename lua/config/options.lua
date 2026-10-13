@@ -39,7 +39,7 @@ vim.diagnostic.config({
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "cs", "python", "java", "rust" },
+  pattern = { "cs", "python", "java", "rust", "c", "cpp" },
   callback = function()
     vim.opt_local.shiftwidth = 4
     vim.opt_local.tabstop = 4

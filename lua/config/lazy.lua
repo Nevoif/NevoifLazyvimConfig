@@ -23,6 +23,8 @@ require("lazy").setup({
         { import = "lazyvim.plugins.extras.lang.markdown" },
         { import = "lazyvim.plugins.extras.lang.sql" },
         { import = "lazyvim.plugins.extras.lang.rust" },
+        { import = "lazyvim.plugins.extras.lang.clangd" },
+        { import = "lazyvim.plugins.extras.lang.cmake" },
 
         --honorable mentions
         { import = "lazyvim.plugins.extras.test.core" },
