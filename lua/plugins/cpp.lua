@@ -21,6 +21,7 @@ return {
   },
   {
     "Civitasv/cmake-tools.nvim",
+    opts = {},
     keys = {
       { "<leader>mb", "<cmd>CMakeBuild<cr>", desc = "CMake: Build" },
       { "<leader>mr", "<cmd>CMakeRun<cr>", desc = "CMake: Run" },
